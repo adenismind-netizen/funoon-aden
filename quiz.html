@@ -230,6 +230,8 @@ const patterns={
 };
 let currentQ=0,scores={A:0,B:0,C:0,D:0};
 const WA_NUMBER="966558139919";
+// ─── تتبع المصدر من رابط URL (?src=instagram أو ?src=tiktok) ───
+const URL_SOURCE=(new URLSearchParams(window.location.search).get('src')||'other').toLowerCase();
 // ─── WasenderAPI — رسالة واتساب تلقائية (يوم 0) ────────────────
 const WAPI_KEY="ea20603e8eb5a2a44df4e6fe3ff820a5fff42917437f6e74517864c79f80121a";
 function toE164(num){
@@ -266,10 +268,13 @@ function sendTelegramAlert(waNum, patternName, patternKey, userName){
   const now=new Date().toLocaleString('ar-SA',{timeZone:'Asia/Riyadh',hour:'2-digit',minute:'2-digit',day:'numeric',month:'long'});
   const cleanWa=waNum?(waNum.startsWith('05')?'966'+waNum.slice(1):waNum):'';
   const waLink=cleanWa?`\n[📲 فتح واتساب](https://wa.me/${cleanWa})`:'';
+  const srcEmoji={instagram:'📸',tiktok:'🎵',other:'🔗'};
+  const srcLabel={instagram:'إنستغرام / ManyChat',tiktok:'تيك توك',other:'مصدر آخر'};
   const msg=`🎉 *ليد جديد — فنون عدن*\n\n`+
     `👤 *الاسم:* ${userName||'لم يُدخَل'}\n`+
     `📱 *الواتساب:* \`${waNum||'لم يُدخَل'}\`\n`+
     `🔑 *النمط:* ${patternName}\n`+
+    `${srcEmoji[URL_SOURCE]||'🔗'} *المصدر:* ${srcLabel[URL_SOURCE]||URL_SOURCE}\n`+
     `🕐 *الوقت:* ${now}`+
     waLink+`\n\n💡 _تواصلي معها خلال ٥ دقائق!_`;
   fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`,{
@@ -336,7 +341,7 @@ function showResult(){
   fetch(`${SUPABASE_URL}/rest/v1/quiz_leads`,{
     method:'POST',
     headers:{'apikey':SUPABASE_ANON,'Authorization':`Bearer ${SUPABASE_ANON}`,'Content-Type':'application/json','Prefer':'return=minimal'},
-    body:JSON.stringify({name:userName||null,whatsapp:waNum||null,pattern:p.name,pattern_key:winner,book:p.book.title,book_link:p.book.link,scores:scores})
+    body:JSON.stringify({name:userName||null,whatsapp:waNum||null,pattern:p.name,pattern_key:winner,book:p.book.title,book_link:p.book.link,scores:scores,source:URL_SOURCE})
   }).catch(()=>{});
   // ──────────────────────────────────────────────────────────────
 }
