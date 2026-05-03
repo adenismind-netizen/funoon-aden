@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
+<!DOCTYPE html><html lang="ar" dir="rtl"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>اكتشفي نمطك العاطفي — فنون عدن</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Tajawal:wght@200;300;400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&amp;family=Tajawal:wght@200;300;400;500;700;800&amp;display=swap" rel="stylesheet">
 <style>
 :root{--gold:#BFA46A;--gold2:#D4B87A;--gold3:#8C7140;--cream:#F5F0E8;--dark:#0D0C0A;--dark2:#141210;--dark3:#1C1A16;--text:#E8E0D0;--text2:#B8AC96;--text3:#7A7060;--border:rgba(191,164,106,0.18)}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -84,9 +82,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 60px;display:fl
 .share-hint{margin-top:28px;text-align:center;font-size:.8rem;color:var(--text3);line-height:1.7}
 .share-hint a{color:var(--gold3);text-decoration:none}
 .share-hint a:hover{color:var(--gold2)}
+/* قناة تيليغرام */
+.tg-banner{background:rgba(0,136,204,.08);border:1px solid rgba(0,136,204,.25);padding:24px 32px;margin-bottom:14px;display:flex;align-items:center;gap:18px;text-align:right}
+.tg-banner-icon{font-size:2.2rem;flex-shrink:0}
+.tg-banner-text{flex:1}
+.tg-banner-title{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:4px}
+.tg-banner-sub{font-size:.82rem;color:var(--text3);line-height:1.5}
+.tg-banner-btn{display:inline-block;background:rgba(0,136,204,.75);color:#fff;padding:10px 20px;font-family:'Tajawal',sans-serif;font-size:.88rem;font-weight:700;text-decoration:none;border:none;cursor:pointer;flex-shrink:0;transition:background .3s}
+.tg-banner-btn:hover{background:rgba(0,136,204,1)}
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-@media print{nav,.result-actions,.share-hint{display:none!important}body{background:#fff;color:#1a1a1a}.result-pattern-name{color:#8C7140}}
-@media(max-width:640px){nav{padding:16px 24px}.q-card{padding:36px 24px}.result-card,.book-rec{padding:28px 24px}.result-traits{grid-template-columns:1fr}}
+@media print{nav,.result-actions,.share-hint,.tg-banner{display:none!important}body{background:#fff;color:#1a1a1a}.result-pattern-name{color:#8C7140}}
+@media(max-width:640px){nav{padding:16px 24px}.q-card{padding:36px 24px}.result-card,.book-rec{padding:28px 24px}.result-traits{grid-template-columns:1fr}.tg-banner{flex-direction:column;text-align:center}}
 </style>
 </head>
 <body>
@@ -165,6 +171,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 60px;display:fl
       </div>
       <a id="b-link" class="btn-gold" style="font-size:.92rem;padding:14px 32px;">احصلي عليه ←</a>
     </div>
+
+    <!-- ✨ قناة تيليغرام البراند -->
+    <div class="tg-banner">
+      <div class="tg-banner-icon">✦</div>
+      <div class="tg-banner-text">
+        <div class="tg-banner-title">انضمي لمجتمع فنون عدن</div>
+        <div class="tg-banner-sub">محتوى يومي عن أنماط التعلق، التحول الداخلي، والعلاقات الصحية — ١٩٣٠+ عضوة</div>
+      </div>
+      <a href="https://t.me/EdenArtspirtuality" target="_blank" class="tg-banner-btn">انضمي الآن ←</a>
+    </div>
+
     <div class="result-actions">
       <a id="wa-send-link" class="btn-outline" target="_blank" style="padding:16px;font-size:.92rem;">📲 احصلي على دليلك المجاني الكامل عبر واتساب</a>
       <button onclick="window.print()" style="padding:14px;font-size:.88rem;background:transparent;color:var(--text3);border:1px solid var(--border);cursor:pointer;font-family:'Tajawal',sans-serif;">💾 احفظي نتيجتك</button>
@@ -212,6 +229,54 @@ const patterns={
 };
 let currentQ=0,scores={A:0,B:0,C:0,D:0};
 const WA_NUMBER="966558139919";
+// ─── WasenderAPI — رسالة واتساب تلقائية (يوم 0) ────────────────
+const WAPI_KEY="ea20603e8eb5a2a44df4e6fe3ff820a5fff42917437f6e74517864c79f80121a";
+function toE164(num){
+  let n=num.replace(/[\s\-().+]/g,'');
+  if(n.startsWith('05')&&n.length===10) n='966'+n.slice(1);
+  else if(n.startsWith('5')&&n.length===9) n='966'+n;
+  else if(n.startsWith('00966')) n=n.slice(2);
+  if(!n.startsWith('+')) n='+'+n;
+  return n;
+}
+function sendWhatsAppWelcome(waNum, patternName){
+  if(!waNum||waNum.length<9) return;
+  const to=toE164(waNum);
+  const text=
+    `أهلاً 🌙\n\n`+
+    `شكراً على إكمالكِ اختبار فنون عدن 💛\n\n`+
+    `نمطك العاطفي: *${patternName}*\n\n`+
+    `كثير من البنات اللي عندهن نفس نمطك قلن إن فهم هذا النمط غيّر طريقة تعاملهن مع نفسهن تماماً 🌸\n\n`+
+    `خلال الساعات القادمة راح أشاركك محتوى خاص لنمطك تحديداً.\n\n`+
+    `وللمزيد ومجتمعنا الأنثوي:\n`+
+    `👉 https://t.me/EdenArtspirtuality\n\n`+
+    `أنا هنا إذا عندك أي سؤال 🤍\n— فنون عدن`;
+  fetch('https://www.wasenderapi.com/api/send-message',{
+    method:'POST',
+    headers:{'Authorization':`Bearer ${WAPI_KEY}`,'Content-Type':'application/json'},
+    body:JSON.stringify({to,text})
+  }).catch(()=>{});
+}
+// ────────────────────────────────────────────────────────────────
+// ─── Telegram Bot (إشعار فوري لصاحبة الحساب) ───────────────────
+const TG_TOKEN="8635501737:AAF0rZlAWi7JqtQNOm_7N5RwjcupNZAAu6A";
+const TG_CHAT="910178996";
+function sendTelegramAlert(waNum, patternName, patternKey){
+  const now=new Date().toLocaleString('ar-SA',{timeZone:'Asia/Riyadh',hour:'2-digit',minute:'2-digit',day:'numeric',month:'long'});
+  const cleanWa=waNum?(waNum.startsWith('05')?'966'+waNum.slice(1):waNum):'';
+  const waLink=cleanWa?`\n[📲 فتح واتساب](https://wa.me/${cleanWa})`:'';
+  const msg=`🎉 *ليد جديد — فنون عدن*\n\n`+
+    `📱 *الواتساب:* \`${waNum||'لم يُدخَل'}\`\n`+
+    `🔑 *النمط:* ${patternName}\n`+
+    `🕐 *الوقت:* ${now}`+
+    waLink+`\n\n💡 _تواصلي معها خلال ٥ دقائق!_`;
+  fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`,{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({chat_id:TG_CHAT,text:msg,parse_mode:'Markdown',disable_web_page_preview:true})
+  }).catch(()=>{});
+}
+// ────────────────────────────────────────────────────────────────
 function startQuiz(){document.getElementById('screen-intro').style.display='none';document.getElementById('screen-quiz').style.display='block';renderQuestion()}
 function renderQuestion(){
   const q=questions[currentQ];
@@ -258,28 +323,22 @@ function showResult(){
   const msg=encodeURIComponent(p.waMsg+(waNum?`\nرقمي: ${waNum}`:''));
   document.getElementById('wa-send-link').href=`https://wa.me/${WA_NUMBER}?text=${msg}`;
   window.scrollTo({top:0,behavior:'smooth'});
+  // ── واتساب تلقائي (يوم 0) ─────────────────────────────────────
+  sendWhatsAppWelcome(waNum, p.name);
+  // ── إشعار تيليغرام فوري ────────────────────────────────────────
+  sendTelegramAlert(waNum, p.name, winner);
   // ── Supabase lead capture ──────────────────────────────────────
-  const SUPABASE_URL = 'https://bjxrzdexgplgjptneomv.supabase.co';
-  const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJqeHJ6ZGV4Z3BsZ2pwdG5lb212Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5NTY1MTMsImV4cCI6MjA5MjUzMjUxM30.PXlKTyzEGqCLl3YaXCj6akt0-y46lNWJX9ABPGV-cdk';
-  fetch(`${SUPABASE_URL}/rest/v1/quiz_leads`, {
-    method: 'POST',
-    headers: {
-      'apikey': SUPABASE_ANON,
-      'Authorization': `Bearer ${SUPABASE_ANON}`,
-      'Content-Type': 'application/json',
-      'Prefer': 'return=minimal'
-    },
-    body: JSON.stringify({
-      whatsapp: waNum || null,
-      pattern: p.name,
-      pattern_key: winner,
-      book: p.book.title,
-      book_link: p.book.link,
-      scores: scores
-    })
+  const SUPABASE_URL='https://bjxrzdexgplgjptneomv.supabase.co';
+  const SUPABASE_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJqeHJ6ZGV4Z3BsZ2pwdG5lb212Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5NTY1MTMsImV4cCI6MjA5MjUzMjUxM30.PXlKTyzEGqCLl3YaXCj6akt0-y46lNWJX9ABPGV-cdk';
+  fetch(`${SUPABASE_URL}/rest/v1/quiz_leads`,{
+    method:'POST',
+    headers:{'apikey':SUPABASE_ANON,'Authorization':`Bearer ${SUPABASE_ANON}`,'Content-Type':'application/json','Prefer':'return=minimal'},
+    body:JSON.stringify({whatsapp:waNum||null,pattern:p.name,pattern_key:winner,book:p.book.title,book_link:p.book.link,scores:scores})
   }).catch(()=>{});
   // ──────────────────────────────────────────────────────────────
 }
 </script>
-</body>
-</html>
+
+
+
+</body></html>
