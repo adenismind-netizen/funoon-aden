@@ -138,7 +138,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 60px;display:fl
   <div id="screen-whatsapp">
     <div class="wa-icon">✦</div>
     <h2 class="wa-title">خطوة أخيرة</h2>
-    <p class="wa-desc">أدخلي رقم واتساب لتصلك نتيجتك<br>مع دليلك المجاني الكامل</p>
+    <p class="wa-desc">أدخلي اسمك ورقم واتساب لتصلك نتيجتك<br>مع دليلك المجاني الكامل</p>
+    <input type="text" id="user-name" class="wa-input" placeholder="اسمك الكريم" maxlength="50" style="text-align:right;direction:rtl;letter-spacing:0;margin-bottom:12px;">
     <input type="tel" id="wa-number" class="wa-input" placeholder="05XXXXXXXX" maxlength="15" inputmode="numeric">
     <p class="wa-note">سيُستخدم رقمك فقط لإرسال نتيجتك · لن يُشارَك</p>
     <button class="btn-gold" onclick="showResult()" style="width:100%;font-size:1rem;padding:18px;">اكشفي نمطك ←</button>
@@ -261,11 +262,12 @@ function sendWhatsAppWelcome(waNum, patternName){
 // ─── Telegram Bot (إشعار فوري لصاحبة الحساب) ───────────────────
 const TG_TOKEN="8635501737:AAF0rZlAWi7JqtQNOm_7N5RwjcupNZAAu6A";
 const TG_CHAT="910178996";
-function sendTelegramAlert(waNum, patternName, patternKey){
+function sendTelegramAlert(waNum, patternName, patternKey, userName){
   const now=new Date().toLocaleString('ar-SA',{timeZone:'Asia/Riyadh',hour:'2-digit',minute:'2-digit',day:'numeric',month:'long'});
   const cleanWa=waNum?(waNum.startsWith('05')?'966'+waNum.slice(1):waNum):'';
   const waLink=cleanWa?`\n[📲 فتح واتساب](https://wa.me/${cleanWa})`:'';
   const msg=`🎉 *ليد جديد — فنون عدن*\n\n`+
+    `👤 *الاسم:* ${userName||'لم يُدخَل'}\n`+
     `📱 *الواتساب:* \`${waNum||'لم يُدخَل'}\`\n`+
     `🔑 *النمط:* ${patternName}\n`+
     `🕐 *الوقت:* ${now}`+
@@ -304,6 +306,7 @@ function pick(tp,el){
 function showWA(){document.getElementById('screen-quiz').style.display='none';document.getElementById('screen-whatsapp').style.display='block'}
 function showResult(){
   const waNum=document.getElementById('wa-number').value.trim();
+  const userName=document.getElementById('user-name').value.trim();
   const winner=Object.entries(scores).sort((a,b)=>b[1]-a[1])[0][0];
   const p=patterns[winner];const total=5;
   document.getElementById('screen-whatsapp').style.display='none';
@@ -325,15 +328,15 @@ function showResult(){
   window.scrollTo({top:0,behavior:'smooth'});
   // ── واتساب تلقائي (يوم 0) ─────────────────────────────────────
   sendWhatsAppWelcome(waNum, p.name);
-  // ── إشعار تيليغرام فوري ────────────────────────────────────────
-  sendTelegramAlert(waNum, p.name, winner);
-  // ── Supabase lead capture ──────────────────────────────────────
+  // ── إشعار تيليغرام فوري (مع الاسم) ───────────────────────────
+  sendTelegramAlert(waNum, p.name, winner, userName);
+  // ── Supabase lead capture (مع الاسم) ──────────────────────────
   const SUPABASE_URL='https://bjxrzdexgplgjptneomv.supabase.co';
   const SUPABASE_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJqeHJ6ZGV4Z3BsZ2pwdG5lb212Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5NTY1MTMsImV4cCI6MjA5MjUzMjUxM30.PXlKTyzEGqCLl3YaXCj6akt0-y46lNWJX9ABPGV-cdk';
   fetch(`${SUPABASE_URL}/rest/v1/quiz_leads`,{
     method:'POST',
     headers:{'apikey':SUPABASE_ANON,'Authorization':`Bearer ${SUPABASE_ANON}`,'Content-Type':'application/json','Prefer':'return=minimal'},
-    body:JSON.stringify({whatsapp:waNum||null,pattern:p.name,pattern_key:winner,book:p.book.title,book_link:p.book.link,scores:scores})
+    body:JSON.stringify({name:userName||null,whatsapp:waNum||null,pattern:p.name,pattern_key:winner,book:p.book.title,book_link:p.book.link,scores:scores})
   }).catch(()=>{});
   // ──────────────────────────────────────────────────────────────
 }
