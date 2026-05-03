@@ -258,6 +258,27 @@ function showResult(){
   const msg=encodeURIComponent(p.waMsg+(waNum?`\nرقمي: ${waNum}`:''));
   document.getElementById('wa-send-link').href=`https://wa.me/${WA_NUMBER}?text=${msg}`;
   window.scrollTo({top:0,behavior:'smooth'});
+  // ── Supabase lead capture ──────────────────────────────────────
+  const SUPABASE_URL = 'https://bjxrzdexgplgjptneomv.supabase.co';
+  const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJqeHJ6ZGV4Z3BsZ2pwdG5lb212Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5NTY1MTMsImV4cCI6MjA5MjUzMjUxM30.PXlKTyzEGqCLl3YaXCj6akt0-y46lNWJX9ABPGV-cdk';
+  fetch(`${SUPABASE_URL}/rest/v1/quiz_leads`, {
+    method: 'POST',
+    headers: {
+      'apikey': SUPABASE_ANON,
+      'Authorization': `Bearer ${SUPABASE_ANON}`,
+      'Content-Type': 'application/json',
+      'Prefer': 'return=minimal'
+    },
+    body: JSON.stringify({
+      whatsapp: waNum || null,
+      pattern: p.name,
+      pattern_key: winner,
+      book: p.book.title,
+      book_link: p.book.link,
+      scores: scores
+    })
+  }).catch(()=>{});
+  // ──────────────────────────────────────────────────────────────
 }
 </script>
 </body>
