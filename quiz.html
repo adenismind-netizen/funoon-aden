@@ -51,6 +51,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 60px;display:fl
 .wa-input::placeholder{color:var(--text3);letter-spacing:1px;font-size:.9rem}
 .wa-input:focus{border-color:var(--gold3)}
 .wa-note{font-size:.8rem;color:var(--text3);margin-bottom:32px}
+.wa-error{font-size:.85rem;color:#e05c5c;margin-bottom:12px;display:none;text-align:center}
+.wa-input.error{border-color:#e05c5c}
 #screen-result{display:none;width:100%;max-width:680px;position:relative;z-index:1;animation:fadeUp .7s ease both}
 .result-header{text-align:center;margin-bottom:40px}
 .result-eyebrow{font-size:11px;letter-spacing:5px;color:var(--gold3);text-transform:uppercase;margin-bottom:16px}
@@ -139,12 +141,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 60px;display:fl
     <div class="wa-icon">✦</div>
     <h2 class="wa-title">خطوة أخيرة</h2>
     <p class="wa-desc">أدخلي اسمك ورقم واتساب لتصلك نتيجتك<br>مع دليلك المجاني الكامل</p>
-    <input type="text" id="user-name" class="wa-input" placeholder="اسمك الكريم" maxlength="50" style="text-align:right;direction:rtl;letter-spacing:0;margin-bottom:12px;">
-    <input type="tel" id="wa-number" class="wa-input" placeholder="05XXXXXXXX" maxlength="15" inputmode="numeric">
+    <input type="text" id="user-name" class="wa-input" placeholder="اسمك الكريم *" maxlength="50" style="text-align:right;direction:rtl;letter-spacing:0;margin-bottom:12px;" oninput="clearError('user-name')">
+    <input type="tel" id="wa-number" class="wa-input" placeholder="05XXXXXXXX *" maxlength="15" inputmode="numeric" oninput="clearError('wa-number')">
+    <p class="wa-error" id="form-error">⚠️ الرجاء إدخال الاسم ورقم الجوال — كلاهما مطلوب</p>
     <p class="wa-note">سيُستخدم رقمك فقط لإرسال نتيجتك · لن يُشارَك</p>
     <button class="btn-gold" onclick="showResult()" style="width:100%;font-size:1rem;padding:18px;">اكشفي نمطك ←</button>
-    <br><br>
-    <button class="btn-outline" onclick="showResult()" style="width:100%;font-size:.9rem;padding:14px;background:transparent;color:var(--text3);border-color:var(--border);">تخطي — أريد النتيجة فقط</button>
   </div>
 
   <!-- RESULT -->
@@ -309,9 +310,24 @@ function pick(tp,el){
   setTimeout(()=>{scores[tp]++;currentQ++;currentQ<5?renderQuestion():showWA()},420);
 }
 function showWA(){document.getElementById('screen-quiz').style.display='none';document.getElementById('screen-whatsapp').style.display='block'}
+function clearError(id){
+  document.getElementById(id).classList.remove('error');
+  document.getElementById('form-error').style.display='none';
+}
 function showResult(){
   const waNum=document.getElementById('wa-number').value.trim();
   const userName=document.getElementById('user-name').value.trim();
+  // ── تحقق إلزامي — كلا الحقلين مطلوبان ─────────────────────────
+  let hasError=false;
+  if(!userName){document.getElementById('user-name').classList.add('error');hasError=true;}
+  if(!waNum||waNum.length<9){document.getElementById('wa-number').classList.add('error');hasError=true;}
+  if(hasError){
+    const err=document.getElementById('form-error');
+    err.style.display='block';
+    err.scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+  // ────────────────────────────────────────────────────────────────
   const winner=Object.entries(scores).sort((a,b)=>b[1]-a[1])[0][0];
   const p=patterns[winner];const total=5;
   document.getElementById('screen-whatsapp').style.display='none';
