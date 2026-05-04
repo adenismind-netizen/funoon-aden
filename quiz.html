@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>اكتشفي نمطك العاطفي — فنون عدن</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&amp;family=Tajawal:wght@200;300;400;500;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Tajawal:wght@200;300;400;500;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--gold:#BFA46A;--gold2:#D4B87A;--gold3:#8C7140;--cream:#F5F0E8;--dark:#0D0C0A;--dark2:#141210;--dark3:#1C1A16;--text:#E8E0D0;--text2:#B8AC96;--text3:#7A7060;--border:rgba(191,164,106,0.18)}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -43,48 +43,61 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 60px;display:fl
 .option-btn.selected{border-color:var(--gold2);background:rgba(191,164,106,.08);color:var(--text)}
 .opt-letter{min-width:32px;height:32px;border:1px solid var(--gold3);display:flex;align-items:center;justify-content:center;font-size:.82rem;color:var(--gold);font-weight:700;flex-shrink:0;margin-top:2px;transition:all .3s}
 .option-btn.selected .opt-letter{background:var(--gold2);color:var(--dark);border-color:var(--gold2)}
-#screen-whatsapp{display:none;text-align:center;max-width:520px;position:relative;z-index:1;animation:fadeUp .6s ease both}
-.wa-icon{width:72px;height:72px;background:rgba(191,164,106,.1);border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 28px;font-size:2rem}
-.wa-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4vw,2.2rem);font-weight:700;margin-bottom:16px}
-.wa-desc{font-size:1rem;color:var(--text2);line-height:1.8;font-weight:300;margin-bottom:40px}
-.wa-input{width:100%;padding:18px 24px;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--text);font-family:'Tajawal',sans-serif;font-size:1.1rem;text-align:center;letter-spacing:2px;outline:none;transition:border-color .3s;direction:ltr;margin-bottom:12px}
-.wa-input::placeholder{color:var(--text3);letter-spacing:1px;font-size:.9rem}
-.wa-input:focus{border-color:var(--gold3)}
-.wa-note{font-size:.8rem;color:var(--text3);margin-bottom:32px}
-.wa-error{font-size:.85rem;color:#e05c5c;margin-bottom:12px;display:none;text-align:center}
-.wa-input.error{border-color:#e05c5c}
-#screen-result{display:none;width:100%;max-width:680px;position:relative;z-index:1;animation:fadeUp .7s ease both}
-.result-header{text-align:center;margin-bottom:40px}
+#screen-form{display:none;text-align:center;max-width:520px;position:relative;z-index:1;animation:fadeUp .6s ease both}
+.form-icon{width:72px;height:72px;background:rgba(191,164,106,.1);border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 28px;font-size:2rem}
+.form-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4vw,2.2rem);font-weight:700;margin-bottom:16px}
+.form-desc{font-size:1rem;color:var(--text2);line-height:1.8;font-weight:300;margin-bottom:40px}
+.form-input{width:100%;padding:18px 24px;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--text);font-family:'Tajawal',sans-serif;font-size:1.1rem;text-align:right;direction:rtl;outline:none;transition:border-color .3s;margin-bottom:12px}
+.form-input::placeholder{color:var(--text3);font-size:.9rem}
+.form-input:focus{border-color:var(--gold3)}
+.form-input.error{border-color:#e05c5c}
+.form-error{font-size:.85rem;color:#e05c5c;margin-bottom:12px;display:none;text-align:center}
+.form-note{font-size:.8rem;color:var(--text3);margin-bottom:32px}
+#screen-result{display:none;width:100%;max-width:720px;position:relative;z-index:1;animation:fadeUp .7s ease both}
+.result-header{text-align:center;margin-bottom:48px}
 .result-eyebrow{font-size:11px;letter-spacing:5px;color:var(--gold3);text-transform:uppercase;margin-bottom:16px}
 .result-pattern-name{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,6vw,3.6rem);font-weight:900;color:var(--gold2);margin-bottom:8px;letter-spacing:-.5px}
-.result-pattern-sub{font-size:1rem;color:var(--text3);letter-spacing:2px}
-.result-card{border:1px solid var(--border);padding:40px 44px;margin-bottom:28px;background:rgba(191,164,106,.03);position:relative}
+.result-pattern-sub{font-size:1rem;color:var(--text3);letter-spacing:2px;margin-bottom:20px}
+.result-pct-badge{display:inline-block;background:rgba(191,164,106,.1);border:1px solid var(--gold3);padding:6px 20px;font-size:.88rem;color:var(--gold2);letter-spacing:1px}
+.result-card{border:1px solid var(--border);padding:44px 48px;margin-bottom:28px;background:rgba(191,164,106,.03);position:relative}
 .result-card::before{content:'';position:absolute;top:0;right:0;width:80px;height:2px;background:linear-gradient(90deg,transparent,var(--gold2))}
-.result-section-label{font-size:10px;letter-spacing:4px;color:var(--gold3);text-transform:uppercase;margin-bottom:14px}
-.result-desc{font-size:1.05rem;color:var(--text2);line-height:1.9;font-weight:300;margin-bottom:28px;border-bottom:1px solid var(--border);padding-bottom:28px}
-.result-traits{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.result-section-label{font-size:10px;letter-spacing:4px;color:var(--gold3);text-transform:uppercase;margin-bottom:18px}
+.result-paragraph{font-size:1.05rem;color:var(--text2);line-height:2;font-weight:300;margin-bottom:20px}
+.result-paragraph:last-of-type{margin-bottom:0}
+.result-divider{border:none;border-top:1px solid var(--border);margin:32px 0}
+.origin-block{background:rgba(191,164,106,.05);border-right:2px solid var(--gold3);padding:20px 24px;margin-bottom:32px}
+.origin-label{font-size:10px;letter-spacing:3px;color:var(--gold3);text-transform:uppercase;margin-bottom:10px}
+.origin-text{font-size:.95rem;color:var(--text2);line-height:1.9;font-weight:300}
+.manif-list{display:flex;flex-direction:column;gap:14px;margin-bottom:32px}
+.manif-item{display:flex;align-items:flex-start;gap:16px;padding:16px 20px;border:1px solid rgba(191,164,106,.1);background:rgba(255,255,255,.015)}
+.manif-icon{font-size:1rem;color:var(--gold);flex-shrink:0;margin-top:2px;min-width:20px;text-align:center}
+.manif-text{font-size:.95rem;color:var(--text2);line-height:1.7;font-weight:300}
+.transform-block{background:linear-gradient(135deg,rgba(191,164,106,.07) 0%,rgba(191,164,106,.02) 100%);border:1px solid rgba(191,164,106,.2);padding:28px 32px;margin-bottom:0}
+.transform-label{font-size:10px;letter-spacing:4px;color:var(--gold2);text-transform:uppercase;margin-bottom:14px}
+.transform-text{font-size:1rem;color:var(--text);line-height:1.9;font-weight:300}
+.result-traits{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:0}
 .result-trait{display:flex;align-items:flex-start;gap:12px;font-size:.9rem;color:var(--text2);line-height:1.6}
-.trait-dot{width:5px;height:5px;border-radius:50%;background:var(--gold3);margin-top:7px;flex-shrink:0}
-.book-rec{border:1px solid var(--gold3);padding:40px 44px;margin-bottom:28px;position:relative;overflow:hidden}
+.trait-dot{width:5px;height:5px;border-radius:50%;background:var(--gold3);margin-top:8px;flex-shrink:0}
+.book-rec{border:1px solid var(--gold3);padding:44px 48px;margin-bottom:28px;position:relative;overflow:hidden}
 .book-rec::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(191,164,106,.04) 0%,transparent 60%);pointer-events:none}
 .book-badge{position:absolute;top:0;left:0;background:var(--gold2);color:var(--dark);font-size:10px;font-weight:800;letter-spacing:2px;padding:5px 14px;text-transform:uppercase}
 .book-label{font-size:10px;letter-spacing:4px;color:var(--gold3);text-transform:uppercase;margin-bottom:10px}
-.book-title{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;color:var(--text);margin-bottom:10px}
-.book-desc{font-size:.9rem;color:var(--text2);line-height:1.7;font-weight:300;margin-bottom:20px}
-.book-price-row{display:flex;align-items:center;gap:14px;margin-bottom:20px}
-.book-price-now{font-size:1.5rem;font-weight:800;color:var(--gold2)}
+.book-title{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--text);margin-bottom:14px}
+.book-why{font-size:.95rem;color:var(--gold2);line-height:1.8;font-weight:400;margin-bottom:16px;font-style:italic;border-right:2px solid var(--gold3);padding-right:16px}
+.book-desc{font-size:.9rem;color:var(--text2);line-height:1.8;font-weight:300;margin-bottom:20px}
+.book-features{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.book-feature{display:flex;align-items:flex-start;gap:10px;font-size:.88rem;color:var(--text2);line-height:1.6}
+.book-feature::before{content:'✦';color:var(--gold3);flex-shrink:0;font-size:.7rem;margin-top:4px}
+.book-price-row{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+.book-price-now{font-size:1.6rem;font-weight:800;color:var(--gold2)}
 .book-price-was{font-size:.9rem;color:var(--text3);text-decoration:line-through}
-.result-actions{display:flex;flex-direction:column;gap:14px;text-align:center}
-.score-bars{margin:28px 0;display:flex;flex-direction:column;gap:14px}
+.score-bars{margin:0 0 28px;display:flex;flex-direction:column;gap:14px}
 .score-bar-row{display:flex;align-items:center;gap:14px}
 .score-bar-label{font-size:.82rem;color:var(--text3);width:90px;flex-shrink:0;text-align:right}
 .score-bar-bg{flex:1;height:3px;background:rgba(191,164,106,.1)}
 .score-bar-fill{height:100%;background:linear-gradient(90deg,var(--gold3),var(--gold2));transition:width 1.2s cubic-bezier(.4,0,.2,1)}
 .score-bar-pct{font-size:.82rem;color:var(--gold3);width:36px;text-align:left}
-.share-hint{margin-top:28px;text-align:center;font-size:.8rem;color:var(--text3);line-height:1.7}
-.share-hint a{color:var(--gold3);text-decoration:none}
-.share-hint a:hover{color:var(--gold2)}
-/* قناة تيليغرام */
+.result-actions{display:flex;flex-direction:column;gap:14px;text-align:center}
 .tg-banner{background:rgba(0,136,204,.08);border:1px solid rgba(0,136,204,.25);padding:24px 32px;margin-bottom:14px;display:flex;align-items:center;gap:18px;text-align:right}
 .tg-banner-icon{font-size:2.2rem;flex-shrink:0}
 .tg-banner-text{flex:1}
@@ -92,8 +105,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 60px;display:fl
 .tg-banner-sub{font-size:.82rem;color:var(--text3);line-height:1.5}
 .tg-banner-btn{display:inline-block;background:rgba(0,136,204,.75);color:#fff;padding:10px 20px;font-family:'Tajawal',sans-serif;font-size:.88rem;font-weight:700;text-decoration:none;border:none;cursor:pointer;flex-shrink:0;transition:background .3s}
 .tg-banner-btn:hover{background:rgba(0,136,204,1)}
+.platform-hint{margin-top:28px;text-align:center;font-size:.8rem;color:var(--text3);line-height:1.7}
+.platform-hint a{color:var(--gold3);text-decoration:none}
+.platform-hint a:hover{color:var(--gold2)}
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-@media print{nav,.result-actions,.share-hint,.tg-banner{display:none!important}body{background:#fff;color:#1a1a1a}.result-pattern-name{color:#8C7140}}
+@media print{nav,.result-actions,.platform-hint,.tg-banner{display:none!important}body{background:#fff;color:#1a1a1a}.result-pattern-name{color:#8C7140}}
 @media(max-width:640px){nav{padding:16px 24px}.q-card{padding:36px 24px}.result-card,.book-rec{padding:28px 24px}.result-traits{grid-template-columns:1fr}.tg-banner{flex-direction:column;text-align:center}}
 </style>
 </head>
@@ -136,17 +152,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 60px;display:fl
     </div>
   </div>
 
-  <!-- WHATSAPP -->
-  <div id="screen-whatsapp">
-    <div class="wa-icon">✦</div>
-    <h2 class="wa-title">خطوة أخيرة</h2>
-    <p class="wa-desc">أدخلي اسمك ورقم واتساب لتصلك نتيجتك<br>مع دليلك المجاني الكامل</p>
-    <input type="text" id="user-name" class="wa-input" placeholder="اسمك الكريم *" maxlength="50" style="text-align:right;direction:rtl;letter-spacing:0;margin-bottom:12px;" oninput="clearError('user-name')">
-    <input type="tel" id="wa-number" class="wa-input" placeholder="05XXXXXXXX *" maxlength="15" inputmode="numeric" oninput="clearError('wa-number')">
-    <p class="wa-error" id="form-error">⚠️ الرجاء إدخال الاسم ورقم الجوال — كلاهما مطلوب</p>
-    <p class="wa-note">سيُستخدم رقمك فقط لإرسال نتيجتك · لن يُشارَك</p>
+  <!-- FORM -->
+  <div id="screen-form">
+    <div class="form-icon">✦</div>
+    <h2 class="form-title">خطوة أخيرة</h2>
+    <p class="form-desc">أدخلي اسمك لتصلكِ نتيجتك الكاملة<br>مع تحليل دقيق لنمطك العاطفي</p>
+    <input type="text" id="user-name" class="form-input" placeholder="اسمك الكريم *" maxlength="50" oninput="clearNameError()">
+    <p class="form-error" id="form-error">الرجاء إدخال اسمك للمتابعة</p>
+    <input type="tel" id="user-phone" class="form-input" placeholder="رقم جوالك (اختياري)" maxlength="15" inputmode="numeric" style="direction:ltr;text-align:center;letter-spacing:2px;">
+    <p class="form-note">معلوماتك محفوظة بأمان · لن تُشارَك مع أحد</p>
     <button class="btn-gold" onclick="showResult()" style="width:100%;font-size:1rem;padding:18px;">اكشفي نمطك ←</button>
-    <p style="margin-top:18px"><button onclick="skipForm()" style="background:none;border:none;color:var(--text3);font-family:'Tajawal',sans-serif;font-size:.85rem;cursor:pointer;text-decoration:underline;letter-spacing:.5px">تخطي — أريد النتيجة فقط</button></p>
   </div>
 
   <!-- RESULT -->
@@ -155,19 +170,46 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 60px;display:fl
       <div class="result-eyebrow">نتيجة اختبارك</div>
       <div class="result-pattern-name" id="r-name"></div>
       <div class="result-pattern-sub" id="r-sub"></div>
+      <div id="r-pct-badge" class="result-pct-badge" style="margin-top:16px;display:inline-block"></div>
     </div>
-    <div class="score-bars" id="score-bars"></div>
+
+    <!-- أشرطة التوزيع -->
+    <div class="result-card" style="margin-bottom:28px">
+      <div class="result-section-label">توزيع نمطك العاطفي</div>
+      <div class="score-bars" id="score-bars"></div>
+    </div>
+
+    <!-- التحليل العميق -->
     <div class="result-card">
       <div class="result-section-label">ماذا يعني هذا النمط؟</div>
-      <p class="result-desc" id="r-desc"></p>
-      <div class="result-section-label">سمات هذا النمط</div>
+      <div id="r-desc-paras"></div>
+      <hr class="result-divider">
+      <div class="origin-block">
+        <div class="origin-label">من أين جاء هذا النمط؟</div>
+        <div class="origin-text" id="r-origin"></div>
+      </div>
+      <div class="result-section-label">كيف يظهر في حياتك اليومية</div>
+      <div class="manif-list" id="r-manif"></div>
+      <div class="transform-block">
+        <div class="transform-label">طريق التحول</div>
+        <div class="transform-text" id="r-transform"></div>
+      </div>
+    </div>
+
+    <!-- السمات -->
+    <div class="result-card">
+      <div class="result-section-label">السمات المميزة لنمطك</div>
       <div class="result-traits" id="r-traits"></div>
     </div>
+
+    <!-- الكتاب -->
     <div class="book-rec">
       <div class="book-badge">موصى به لكِ</div>
-      <div class="book-label">الكتاب المناسب لنمطك</div>
+      <div class="book-label">الكتاب المصمَّم لنمطك تحديداً</div>
       <div class="book-title" id="b-title"></div>
+      <div class="book-why" id="b-why"></div>
       <div class="book-desc" id="b-desc"></div>
+      <div class="book-features" id="b-features"></div>
       <div class="book-price-row">
         <span class="book-price-now" id="b-price"></span>
         <span class="book-price-was" id="b-was"></span>
@@ -175,7 +217,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 60px;display:fl
       <a id="b-link" class="btn-gold" style="font-size:.92rem;padding:14px 32px;">احصلي عليه ←</a>
     </div>
 
-    <!-- ✨ قناة تيليغرام البراند -->
+    <!-- قناة تيليغرام -->
     <div class="tg-banner">
       <div class="tg-banner-icon">✦</div>
       <div class="tg-banner-text">
@@ -186,10 +228,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 60px;display:fl
     </div>
 
     <div class="result-actions">
-      <a id="wa-send-link" class="btn-outline" target="_blank" style="padding:16px;font-size:.92rem;">📲 احصلي على دليلك المجاني الكامل عبر واتساب</a>
-      <button onclick="window.print()" style="padding:14px;font-size:.88rem;background:transparent;color:var(--text3);border:1px solid var(--border);cursor:pointer;font-family:'Tajawal',sans-serif;">💾 احفظي نتيجتك</button>
+      <button onclick="window.print()" style="padding:14px;font-size:.88rem;background:transparent;color:var(--text3);border:1px solid var(--border);cursor:pointer;font-family:'Tajawal',sans-serif;">احفظي نتيجتك</button>
     </div>
-    <div class="share-hint">
+    <div class="platform-hint">
       <p>هل تريدين فهماً أعمق وتمارين يومية للتحول؟<br>
       <a href="https://aden-art.com/category/zEGRNx">اكتشفي منصة فنون عدن التعليمية ←</a></p>
     </div>
@@ -224,69 +265,140 @@ const questions=[
     {l:"ج",t:"أحياناً أستمتع وأحياناً يعتريني فراغ وقلق مفاجئ بلا سبب",tp:"C"},
     {l:"د",t:"أستمتع بوحدتي وبالوقت مع من أحب بنفس القدر — توازن حقيقي",tp:"D"}]}
 ];
+
 const patterns={
-  A:{name:"النمط القلق",sub:"التعلق العاطفي المكثّف",desc:"أنتِ شخصية عميقة الإحساس ومحبّة بصدق — لكنك تحملين خوفاً خفياً من الفقد يجعلك تعطين أكثر مما تأخذين. هذا النمط يُنشئ دوامة من التعلق والألم، وكثيراً ما يجذبكِ لأشخاص غير متاحين عاطفياً.",traits:["خوف مستمر من الهجران","الإعطاء أكثر من اللازم","صعوبة في وضع حدود","التفكير المفرط في مواقف الآخرين"],book:{title:"كسر أغلال التعلق",desc:"استراتيجيات عملية للتحرر من التعلق العاطفي — كُتب من 16 عاماً من التجربة الحقيقية.",price:"49 ريال",was:"69 ريال",link:"https://aden-art.com/XeoRBwV"},waMsg:"نتيجتي: النمط القلق 🔑 أريد دليلي المجاني الكامل"},
-  B:{name:"النمط التفادي",sub:"الحفاظ على المسافة الآمنة",desc:"لديكِ استقلالية قوية — لكنك تبنين جدراناً لا واعية تُبعد من يريد الاقتراب. الخوف من الانكشاف العاطفي يجعلكِ تُفضّلين المسافة على القرب وتشعرين أنه يسلب حريتك.",traits:["صعوبة في التعبير العاطفي","تفضيل الاستقلالية المطلقة","الابتعاد عند زيادة التوقعات","الشعور بالاختناق من الالتزام"],book:{title:"الجميع هم أنت",desc:"كيف يُغيّر تغيير داخلكِ كل علاقاتك — الأكثر مبيعاً في فنون عدن.",price:"53 ريال",was:"70 ريال",link:"https://aden-art.com/gZamAOW"},waMsg:"نتيجتي: النمط التفادي 🔑 أريد دليلي المجاني الكامل"},
-  C:{name:"النمط الفوضوي",sub:"التأرجح بين الجذب والطرد",desc:"تعيشين تناقضاً داخلياً حقيقياً — تريدين الحب وتخافين منه في الوقت ذاته. هذا النمط يُنتج علاقات مكثّفة وغير مستقرة. الجذور عميقة لكن التحول ممكن.",traits:["تقلبات عاطفية مفاجئة","الدفع والسحب في العلاقات","صعوبة الثقة رغم الرغبة فيها","الإحساس بالفراغ الداخلي"],book:{title:"ظل العلاقات",desc:"7 قوانين كونية + علم يونغ + الظل المقموع — للفهم الأعمق لميكانيكا علاقاتك.",price:"67 ريال",was:"74 ريال",link:"https://aden-art.com/lvxKAVr"},waMsg:"نتيجتي: النمط الفوضوي 🔑 أريد دليلي المجاني الكامل"},
-  D:{name:"النمط الآمن",sub:"الاتزان العاطفي الصحي",desc:"أنتِ في وضع جيد عاطفياً — تثقين بنفسك وبالآخرين. هذا لا يعني انعدام التحديات، بل امتلاكك أدوات داخلية لمواجهتها. الخطوة التالية: تعمّقي في قوانين الجذب لتحقيق ما تريدين.",traits:["ثقة صحية بالنفس والآخرين","التعبير العاطفي بوضوح","القدرة على الالتزام والاستقلالية معاً","معالجة الأزمات بهدوء"],book:{title:"أنت السرّ",desc:"11 خطوة لصناعة الواقع الذي تريدينه — اكتشفي قوتك الداخلية الكاملة.",price:"39 ريال",was:"89 ريال",link:"https://aden-art.com/lGpYbQa"},waMsg:"نتيجتي: النمط الآمن 🔑 أريد دليلي المجاني الكامل"}
+  A:{
+    name:"النمط القلق",
+    sub:"التعلق العاطفي المكثّف",
+    descParas:[
+      "أنتِ إنسانة عميقة الإحساس بامتياز — قدرتكِ على الحب حقيقية وصادقة، وهذه ليست نقطة ضعف أبداً. لكن هذا النمط يجعلكِ تحملين خوفاً خفياً من الفقد يعمل في الخلفية طوال الوقت، يدفعكِ لإعطاء أكثر مما تأخذين، ويشدّكِ نحو أشخاص يبقون على مسافة عاطفية — لأن هذا ما تعرفه عن «الحب».",
+      "هذا النمط لا يعني أن هناك خللاً فيكِ. يعني فقط أن جهازك العاطفي تعلّم أن يبقى في حالة تأهب دائم، خوفاً من أن يُسحب الحب بشكل مفاجئ. الأثر يظهر في تفسير الصمت على أنه رفض، وفي الإعطاء المتواصل أملاً في ضمان البقاء."
+    ],
+    origin:"في أغلب الحالات، يُولد النمط القلق في طفولة حُرمت فيها من الحضور العاطفي المستقر. ربما كان من تحبينهم متقلبين في استجاباتهم — يُعطون الحب أحياناً ويسحبونه في أحيان أخرى. فتعلّم دماغك أن الحب شيء مؤقت يجب أن تكسبيه بجهد مستمر، وليس شيئاً متاحاً بطبيعته لمجرد أنكِ تستحقينه.",
+    manifestations:[
+      {icon:"◈",text:"تجدين نفسك تفكرين في ردود أفعال الآخرين لساعات، تحاولين فهم ما وراء كل كلمة أو صمت"},
+      {icon:"◈",text:"تُعطين أكثر مما عندكِ أحياناً، وبعدها تشعرين بإرهاق داخلي دون أن تعرفي سببه"},
+      {icon:"◈",text:"تجذبين بشكل متكرر أشخاصاً غير متاحين عاطفياً أو يحتاجون إلى «إنقاذ»"},
+      {icon:"◈",text:"تجدين صعوبة في وضع حدود خوفاً من أن تبدي أنانية أو تخسري العلاقة"},
+      {icon:"◈",text:"حين تشعرين بأمان في علاقة ما، يعتريكِ أحياناً شعور غريب بأن هذا لن يدوم"}
+    ],
+    transform:"التحول مع النمط القلق لا يعني أن تصبحي أقل عطاءً — بل أن تتعلمي إعطاء نفسك أولاً ما تعطينه للآخرين. حين تبدئين بمعاملة نفسك بنفس الحنان الذي تمنحينه لمن تحبين، يبدأ الجهاز العاطفي تدريجياً في الشعور بالأمان من الداخل — لا من خلال تطمينات الآخرين.",
+    traits:["خوف عميق من الهجر والرفض","الإعطاء المتكرر أملاً في ضمان العلاقة","التفكير المفرط في ردود أفعال الآخرين","صعوبة وضع الحدود مع من تحبين","الحاجة المستمرة للتطمين والتأكيد","جذب علاقات تعيد نمط الطفولة"],
+    book:{
+      title:"كسر أغلال التعلق",
+      why:"هذا الكتاب كُتب خصيصاً لمن يعيش النمط القلق — يتناول بعمق لماذا نتعلق بمن يؤلمنا، وكيف نوقف هذه الدوامة عملياً دون أن نكبت مشاعرنا.",
+      desc:"استراتيجيات عملية ومجربة للتحرر من التعلق العاطفي غير الصحي — مبنية على سنوات من العمل الفعلي مع أنماط التعلق.",
+      features:[
+        "لماذا نتعلق بمن يؤلمنا وكيف يعمل هذا النمط في الدماغ",
+        "أدوات عملية لوقف دوامة التفكير المفرط في الآخرين",
+        "كيفية بناء الحدود الصحية دون الشعور بالذنب",
+        "برنامج ٢١ يوماً لإعادة تأهيل الجهاز العاطفي"
+      ],
+      price:"49 ريال",was:"69 ريال",link:"https://aden-art.com/XeoRBwV"
+    }
+  },
+  B:{
+    name:"النمط التفادي",
+    sub:"الحفاظ على المسافة الآمنة",
+    descParas:[
+      "لديكِ استقلالية داخلية قوية، وهذا أمر تحسدكِ عليه كثيرات. لكن هذه الاستقلالية أحياناً تتحول إلى جدار غير مرئي يحمي قلبكِ من أي اقتراب حقيقي. كلما شعرتِ أن شخصاً ما يريد الدخول إلى مساحتكِ الداخلية، يطغى شعور بالاختناق يدفعكِ إلى الابتعاد — حتى لو كنتِ تريدين العلاقة في الوقت ذاته.",
+      "النمط التفادي ليس برودة في المشاعر، بل هو على العكس — الشعور يكون عميقاً لكنه مُقيَّد. مشكلته أنه يجعل القرب الحقيقي يبدو خطراً يهدد الحرية والاستقلالية، فتختارين التراجع حتى من العلاقات التي تريدينها في قرارة نفسك."
+    ],
+    origin:"يتشكّل هذا النمط عادةً في بيئة لم تكن فيها المشاعر آمنة للتعبير عنها. ربما كانت الاستقلالية تُمدح والاحتياج العاطفي يُنظر إليه كضعف. أو ربما مررتِ بتجربة انكشاف عاطفي وتركتكِ وحدكِ. فتعلّمت نفسكِ أن الأسلم هو الاكتفاء الذاتي وإدارة الحياة من بعيد عن أي اعتماد عاطفي على الآخرين.",
+    manifestations:[
+      {icon:"◈",text:"تشعرين بإرهاق غريب حين يُبدي شخص ما اهتماماً أو تعلقاً زائداً بكِ"},
+      {icon:"◈",text:"تفضلين إنهاء العلاقة بهدوء على مواجهة نقاش عاطفي مكثّف"},
+      {icon:"◈",text:"تجدين صعوبة في طلب المساعدة حتى حين تحتاجينها فعلاً"},
+      {icon:"◈",text:"تشعرين أن الالتزام يُقيّد حريتك، حتى مع شريك تحبينه"},
+      {icon:"◈",text:"غالباً ما يصفكِ من حولكِ بأنكِ «بعيدة» أو «غير موجودة عاطفياً» رغم أنكِ تشعرين بالعكس"}
+    ],
+    transform:"التحول مع النمط التفادي لا يعني أن تتخلي عن استقلاليتك — هي ميزة حقيقية. يعني أن تتعلمي التمييز بين الاستقلالية الصحية والعزلة العاطفية التي تحرمكِ من العلاقات العميقة. الخطوة الأولى هي أن تسمحي لنفسك بالشعور بالاحتياج دون أن تعتبريه ضعفاً.",
+    traits:["صعوبة في التعبير العاطفي رغم العمق الداخلي","تفضيل الاستقلالية على القرب العاطفي","الابتعاد تلقائياً حين تزداد التوقعات","الشعور بالاختناق من التزامات العلاقات","صعوبة طلب الدعم أو المساعدة","الابتعاد الفوري بعد مواقف الانكشاف"],
+    book:{
+      title:"الجميع هم أنت",
+      why:"هذا الكتاب يتناول بالتحديد كيف تُشكّل علاقتنا بذواتنا كل ما نراه في الآخرين — وهو الجوهر الذي يحتاج إليه النمط التفادي لفهم لماذا يصعب عليه القرب.",
+      desc:"الأكثر مبيعاً في فنون عدن — كيف يُغيّر تغيير نظرتك لنفسك كل علاقاتك وتجاربك من حولكِ.",
+      features:[
+        "كيف تنعكس صورتنا الداخلية على كل من نجذبه إلى حياتنا",
+        "لماذا القرب يبدو مُهدداً وكيف نُعيد برمجة هذه الاستجابة",
+        "تمارين عملية لبناء القدرة على الانكشاف العاطفي الآمن",
+        "كيف تحتفظين باستقلاليتك وتبنين عمقاً حقيقياً في الوقت ذاته"
+      ],
+      price:"53 ريال",was:"70 ريال",link:"https://aden-art.com/gZamAOW"
+    }
+  },
+  C:{
+    name:"النمط الفوضوي",
+    sub:"التأرجح بين الجذب والطرد",
+    descParas:[
+      "أنتِ تعيشين تناقضاً داخلياً حقيقياً — تريدين الحب وتخافين منه في الوقت ذاته. تقتربين من شخص ثم تجدين نفسك تبتعدين دون سبب واضح. هذه الدوامة ليست نزوة أو عدم نضج، بل هي استجابة معقدة تعلّمتها نفسكِ في مواجهة بيئة كانت مصدر الأمان فيها هو ذاته مصدر الخطر.",
+      "هذا النمط يُنتج علاقات مكثّفة وغير مستقرة — لأن الجهاز العصبي يتأرجح بين الرغبة في الارتباط والحاجة للهروب. الخبر الجيد هو أن النمط الفوضوي حين يُفهم ويُعالَج يتحول إلى أعمق أنواع الوعي العاطفي."
+    ],
+    origin:"يتشكّل النمط الفوضوي حين يكون مصدر الأمان في الطفولة هو ذاته مصدر الخوف أو الألم. حين يكون الشخص الذي تحتاجين إليه هو من يؤلمكِ أحياناً، يتعلم الجهاز العصبي أن الحب والخطر متشابكان — فيُنتج هذا التأرجح اللاواعي بين الاقتراب والابتعاد في كل علاقة تالية.",
+    manifestations:[
+      {icon:"◈",text:"تبدئين علاقة بحماس شديد، ثم تشعرين فجأة بالرغبة في الانسحاب دون سبب واضح"},
+      {icon:"◈",text:"تُسيطر عليكِ أحياناً مشاعر شديدة الحدة — فرح مكثّف أو حزن عميق — يربكان من حولكِ"},
+      {icon:"◈",text:"تجدين نفسك تختبرين شريككِ بطرق غير مباشرة لترين إذا كان سيبقى أم سيرحل"},
+      {icon:"◈",text:"الفراغ الداخلي المفاجئ يعتريكِ أحياناً حتى وسط من تحبين ودون سبب ظاهر"},
+      {icon:"◈",text:"تشعرين أن أحداً لا يفهمكِ حقاً رغم محاولاتك المستمرة للتواصل"}
+    ],
+    transform:"التحول مع النمط الفوضوي يبدأ من الفهم — حين تُدركين أن هذا التأرجح ليس عيباً فيكِ بل هو منطق الجهاز العصبي الذي لم يتعلم بعد أن الحب والأمان يمكن أن يكونا في مكان واحد. العمل على هذا النمط يفتح أبواباً من الوعي الذاتي لا تستطيع الأنماط الأخرى الوصول إليها.",
+    traits:["التأرجح بين الرغبة في القرب والهروب منه","علاقات ذات كثافة عاطفية عالية وغير مستقرة","صعوبة الثقة رغم الرغبة الشديدة فيها","الإحساس بالفراغ الداخلي حتى في حضور الآخرين","تقلبات عاطفية مفاجئة تُربك العلاقات","الحساسية العالية للرفض أو التهميش"],
+    book:{
+      title:"ظل العلاقات",
+      why:"هذا الكتاب هو الأنسب للنمط الفوضوي لأنه يعمل على المستوى الأعمق — يشرح الظل النفسي ويونغ وقانون الانعكاس الذي يفسر لماذا نجذب ما نجذبه، وكيف نُحوّل التناقض الداخلي إلى فهم وشفاء.",
+      desc:"٧ قوانين كونية + علم يونغ للظل المقموع — رحلة في أعماق ميكانيكا علاقاتك لتفهمي لماذا تتكرر الأنماط وكيف تكسرينها.",
+      features:[
+        "مفهوم الظل النفسي وكيف يتحكم في اختياراتنا العاطفية",
+        "لماذا نجذب نفس النوع من الأشخاص مراراً وتكراراً",
+        "كيف تتحول العلاقات إلى مرآة تعكس جروحنا الداخلية",
+        "خطوات عملية لتحرير الظل وتحويل الفوضى إلى وعي"
+      ],
+      price:"67 ريال",was:"74 ريال",link:"https://aden-art.com/lvxKAVr"
+    }
+  },
+  D:{
+    name:"النمط الآمن",
+    sub:"الاتزان العاطفي الصحي",
+    descParas:[
+      "أنتِ في موضع متقدم عاطفياً — تثقين بنفسك وبالآخرين، وتستطيعين الجمع بين الاقتراب والاستقلالية دون أن تفقدي توازنكِ. هذا ليس حظاً بل هو إما نتيجة بيئة داعمة نشأتِ فيها، أو عمل داخلي قمتِ به على نفسك في مرحلة ما.",
+      "النمط الآمن لا يعني انعدام التحديات أو ألم العلاقات — بل يعني امتلاككِ أدوات داخلية أصيلة لمعالجة الألم والنزاع والتغيير دون أن تنهاري أو تنكفئي على نفسك. هذه هدية حقيقية، والخطوة التالية هي توسيع هذا الوعي وتعميق إمكاناتك."
+    ],
+    origin:"النمط الآمن ينشأ في الغالب من تجربة تعلّقت فيها بشخص متسق وموثوق في السنوات الأولى من الحياة. أو يتشكّل لاحقاً من خلال عمل داخلي واعٍ — علاج، قراءة، تأمل، أو علاقة داعمة أعادت بناء شعورك بالأمان من الداخل. في كلتا الحالتين، ما لديكِ هو أساس يمكن البناء عليه.",
+    manifestations:[
+      {icon:"◈",text:"تستطيعين التعبير عن احتياجاتك بوضوح دون الشعور المفرط بالذنب أو الخوف"},
+      {icon:"◈",text:"حين تواجهين نزاعاً، تميلين للحوار بدلاً من الهروب أو الانفجار"},
+      {icon:"◈",text:"تشعرين بالراحة في العلاقات الوثيقة وتستطيعين الاستمتاع بالوقت المنفرد بالتساوي"},
+      {icon:"◈",text:"تعالجين خيبات الأمل وتمضين للأمام دون أن تظل الجروح مفتوحة لفترات طويلة"},
+      {icon:"◈",text:"الناس يشعرون بالأمان في حضوركِ ويميلون للثقة بكِ والانفتاح معكِ"}
+    ],
+    transform:"لأنكِ في نقطة جيدة، الخطوة التالية ليست «الإصلاح» بل التوسع. تعمّقي في فهم قوانين الجذب وميكانيكا الواقع لتُحوّلي هذا الأساس الصحي إلى حياة تصنعينها بوعي حقيقي — في العلاقات والمسار والأثر الذي تتركينه.",
+    traits:["ثقة صحية بالنفس والآخرين دون وهم","التعبير العاطفي بوضوح وبدون خوف","القدرة على الالتزام والاستقلالية معاً","معالجة الأزمات بهدوء وفعالية","الحضور الكامل في العلاقات دون فقدان الذات","القدرة على طلب المساعدة حين تحتاجينها"],
+    book:{
+      title:"أنت السرّ",
+      why:"لأنكِ في نمط صحي، الكتاب الأنسب لكِ ليس الشفاء بل الصناعة الواعية للواقع. هذا الكتاب يأخذكِ من الوعي العاطفي إلى فهم كيف تبنين الحياة التي تريدينها بأدوات المرحلة التالية.",
+      desc:"١١ خطوة لصناعة الواقع الذي تريدينه — اكتشفي قوتك الداخلية الكاملة وكيف توظّفينها في كل مجال من مجالات حياتك.",
+      features:[
+        "كيف تُشكّل معتقداتك الخفية واقعكِ الخارجي بشكل مباشر",
+        "القوانين الكونية التي تحكم الجذب والتجربة الإنسانية",
+        "تمارين يومية لإعادة توجيه الطاقة الداخلية بوعي",
+        "كيف تحولين الوعي العاطفي إلى قوة خلق فعلية في حياتك"
+      ],
+      price:"39 ريال",was:"89 ريال",link:"https://aden-art.com/lGpYbQa"
+    }
+  }
 };
+
 let currentQ=0,scores={A:0,B:0,C:0,D:0};
-const WA_NUMBER="966558139919";
-// ─── تتبع المصدر من رابط URL (?src=instagram أو ?src=tiktok) ───
 const URL_SOURCE=(new URLSearchParams(window.location.search).get('src')||'other').toLowerCase();
-// ─── WasenderAPI — رسالة واتساب تلقائية (يوم 0) ────────────────
-const WAPI_KEY="ea20603e8eb5a2a44df4e6fe3ff820a5fff42917437f6e74517864c79f80121a";
-function toE164(num){
-  let n=num.replace(/[\s\-().+]/g,'');
-  if(n.startsWith('05')&&n.length===10) n='966'+n.slice(1);
-  else if(n.startsWith('5')&&n.length===9) n='966'+n;
-  else if(n.startsWith('00966')) n=n.slice(2);
-  if(!n.startsWith('+')) n='+'+n;
-  return n;
+const SUPABASE_URL='https://bjxrzdexgplgjptneomv.supabase.co';
+const SUPABASE_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJqeHJ6ZGV4Z3BsZ2pwdG5lb212Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5NTY1MTMsImV4cCI6MjA5MjUzMjUxM30.PXlKTyzEGqCLl3YaXCj6akt0-y46lNWJX9ABPGV-cdk';
+
+function startQuiz(){
+  document.getElementById('screen-intro').style.display='none';
+  document.getElementById('screen-quiz').style.display='block';
+  renderQuestion();
 }
-function sendWhatsAppWelcome(waNum, patternName){
-  if(!waNum||waNum.length<9) return;
-  const to=toE164(waNum);
-  const text=
-    `أهلاً 🌙\n\n`+
-    `شكراً على إكمالكِ اختبار فنون عدن 💛\n\n`+
-    `نمطك العاطفي: *${patternName}*\n\n`+
-    `كثير من البنات اللي عندهن نفس نمطك قلن إن فهم هذا النمط غيّر طريقة تعاملهن مع نفسهن تماماً 🌸\n\n`+
-    `خلال الساعات القادمة راح أشاركك محتوى خاص لنمطك تحديداً.\n\n`+
-    `وللمزيد ومجتمعنا الأنثوي:\n`+
-    `👉 https://t.me/EdenArtspirtuality\n\n`+
-    `أنا هنا إذا عندك أي سؤال 🤍\n— فنون عدن`;
-  fetch('https://www.wasenderapi.com/api/send-message',{
-    method:'POST',
-    headers:{'Authorization':`Bearer ${WAPI_KEY}`,'Content-Type':'application/json'},
-    body:JSON.stringify({to,text})
-  }).catch(()=>{});
-}
-// ────────────────────────────────────────────────────────────────
-// ─── Telegram Bot (إشعار فوري لصاحبة الحساب) ───────────────────
-const TG_TOKEN="8635501737:AAF0rZlAWi7JqtQNOm_7N5RwjcupNZAAu6A";
-const TG_CHAT="910178996";
-function sendTelegramAlert(waNum, patternName, patternKey, userName){
-  const now=new Date().toLocaleString('ar-SA',{timeZone:'Asia/Riyadh',hour:'2-digit',minute:'2-digit',day:'numeric',month:'long'});
-  const cleanWa=waNum?(waNum.startsWith('05')?'966'+waNum.slice(1):waNum):'';
-  const waLink=cleanWa?`\n[📲 فتح واتساب](https://wa.me/${cleanWa})`:'';
-  const srcEmoji={instagram:'📸',tiktok:'🎵',other:'🔗'};
-  const srcLabel={instagram:'إنستغرام / ManyChat',tiktok:'تيك توك',other:'مصدر آخر'};
-  const msg=`🎉 *ليد جديد — فنون عدن*\n\n`+
-    `👤 *الاسم:* ${userName||'لم يُدخَل'}\n`+
-    `📱 *الواتساب:* \`${waNum||'لم يُدخَل'}\`\n`+
-    `🔑 *النمط:* ${patternName}\n`+
-    `${srcEmoji[URL_SOURCE]||'🔗'} *المصدر:* ${srcLabel[URL_SOURCE]||URL_SOURCE}\n`+
-    `🕐 *الوقت:* ${now}`+
-    waLink+`\n\n💡 _تواصلي معها خلال ٥ دقائق!_`;
-  fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`,{
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({chat_id:TG_CHAT,text:msg,parse_mode:'Markdown',disable_web_page_preview:true})
-  }).catch(()=>{});
-}
-// ────────────────────────────────────────────────────────────────
-function startQuiz(){document.getElementById('screen-intro').style.display='none';document.getElementById('screen-quiz').style.display='block';renderQuestion()}
 function renderQuestion(){
   const q=questions[currentQ];
   document.getElementById('progress-label').textContent=`السؤال ${['١','٢','٣','٤','٥'][currentQ]} من ٥`;
@@ -308,62 +420,88 @@ function renderQuestion(){
 function pick(tp,el){
   document.querySelectorAll('.option-btn').forEach(b=>b.classList.remove('selected'));
   el.classList.add('selected');
-  setTimeout(()=>{scores[tp]++;currentQ++;currentQ<5?renderQuestion():showWA()},420);
+  setTimeout(()=>{scores[tp]++;currentQ++;currentQ<5?renderQuestion():showForm()},420);
 }
-function showWA(){document.getElementById('screen-quiz').style.display='none';document.getElementById('screen-whatsapp').style.display='block'}
-function clearError(id){
-  document.getElementById(id).classList.remove('error');
+function showForm(){
+  document.getElementById('screen-quiz').style.display='none';
+  document.getElementById('screen-form').style.display='block';
+}
+function clearNameError(){
+  document.getElementById('user-name').classList.remove('error');
   document.getElementById('form-error').style.display='none';
 }
 function showResult(){
-  const waNum=document.getElementById('wa-number').value.trim();
   const userName=document.getElementById('user-name').value.trim();
-  // ── تحقق إلزامي — كلا الحقلين مطلوبان ─────────────────────────
-  let hasError=false;
-  if(!userName){document.getElementById('user-name').classList.add('error');hasError=true;}
-  if(!waNum||waNum.length<9){document.getElementById('wa-number').classList.add('error');hasError=true;}
-  if(hasError){
+  const userPhone=document.getElementById('user-phone').value.trim();
+  if(!userName){
+    document.getElementById('user-name').classList.add('error');
     const err=document.getElementById('form-error');
     err.style.display='block';
     err.scrollIntoView({behavior:'smooth',block:'center'});
     return;
   }
-  // ────────────────────────────────────────────────────────────────
   const winner=Object.entries(scores).sort((a,b)=>b[1]-a[1])[0][0];
-  const p=patterns[winner];const total=5;
-  document.getElementById('screen-whatsapp').style.display='none';
+  const p=patterns[winner];
+  const total=5;
+  const dominantPct=Math.round((scores[winner]/total)*100);
+
+  document.getElementById('screen-form').style.display='none';
   document.getElementById('screen-result').style.display='block';
   document.getElementById('r-name').textContent=p.name;
   document.getElementById('r-sub').textContent=p.sub;
-  document.getElementById('r-desc').textContent=p.desc;
+  document.getElementById('r-pct-badge').textContent=`${dominantPct}٪ تطابق مع هذا النمط`;
+
+  // الفقرات التفصيلية
+  document.getElementById('r-desc-paras').innerHTML=p.descParas.map(para=>`<p class="result-paragraph">${para}</p>`).join('');
+
+  // المصدر
+  document.getElementById('r-origin').textContent=p.origin;
+
+  // المظاهر
+  document.getElementById('r-manif').innerHTML=p.manifestations.map(m=>`<div class="manif-item"><div class="manif-icon">${m.icon}</div><div class="manif-text">${m.text}</div></div>`).join('');
+
+  // التحول
+  document.getElementById('r-transform').textContent=p.transform;
+
+  // السمات
   document.getElementById('r-traits').innerHTML=p.traits.map(t=>`<div class="result-trait"><div class="trait-dot"></div><span>${t}</span></div>`).join('');
+
+  // أشرطة التوزيع
   const labels={A:"القلق",B:"التفادي",C:"الفوضوي",D:"الآمن"};
   document.getElementById('score-bars').innerHTML=Object.entries(scores).map(([k,v])=>`<div class="score-bar-row"><div class="score-bar-label">${labels[k]}</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:0%" data-pct="${Math.round((v/total)*100)}%"></div></div><div class="score-bar-pct">${Math.round((v/total)*100)}%</div></div>`).join('');
-  setTimeout(()=>document.querySelectorAll('.score-bar-fill').forEach(el=>el.style.width=el.dataset.pct),100);
+  setTimeout(()=>document.querySelectorAll('.score-bar-fill').forEach(el=>el.style.width=el.dataset.pct),150);
+
+  // الكتاب
   document.getElementById('b-title').textContent=p.book.title;
+  document.getElementById('b-why').textContent=p.book.why;
   document.getElementById('b-desc').textContent=p.book.desc;
+  document.getElementById('b-features').innerHTML=p.book.features.map(f=>`<div class="book-feature">${f}</div>`).join('');
   document.getElementById('b-price').textContent=p.book.price;
   document.getElementById('b-was').textContent=p.book.was;
   document.getElementById('b-link').href=p.book.link;
-  const msg=encodeURIComponent(p.waMsg+(waNum?`\nرقمي: ${waNum}`:''));
-  document.getElementById('wa-send-link').href=`https://wa.me/${WA_NUMBER}?text=${msg}`;
+
   window.scrollTo({top:0,behavior:'smooth'});
-  // ── واتساب تلقائي (يوم 0) ─────────────────────────────────────
-  sendWhatsAppWelcome(waNum, p.name);
-  // ── إشعار تيليغرام فوري (مع الاسم) ───────────────────────────
-  sendTelegramAlert(waNum, p.name, winner, userName);
-  // ── Supabase lead capture (مع الاسم) ──────────────────────────
-  const SUPABASE_URL='https://bjxrzdexgplgjptneomv.supabase.co';
-  const SUPABASE_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJqeHJ6ZGV4Z3BsZ2pwdG5lb212Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5NTY1MTMsImV4cCI6MjA5MjUzMjUxM30.PXlKTyzEGqCLl3YaXCj6akt0-y46lNWJX9ABPGV-cdk';
+
+  // Supabase lead capture فقط — بدون أي إشعارات
   fetch(`${SUPABASE_URL}/rest/v1/quiz_leads`,{
     method:'POST',
-    headers:{'apikey':SUPABASE_ANON,'Authorization':`Bearer ${SUPABASE_ANON}`,'Content-Type':'application/json','Prefer':'return=minimal'},
-    body:JSON.stringify({name:userName||null,whatsapp:waNum||null,pattern:p.name,pattern_key:winner,book:p.book.title,book_link:p.book.link,scores:scores,source:URL_SOURCE})
+    headers:{
+      'apikey':SUPABASE_ANON,
+      'Authorization':`Bearer ${SUPABASE_ANON}`,
+      'Content-Type':'application/json',
+      'Prefer':'return=minimal'
+    },
+    body:JSON.stringify({
+      name:userName||null,
+      whatsapp:userPhone||null,
+      pattern:p.name,
+      pattern_key:winner,
+      book:p.book.title,
+      book_link:p.book.link,
+      scores:scores,
+      source:URL_SOURCE
+    })
   }).catch(()=>{});
-  // ──────────────────────────────────────────────────────────────
 }
 </script>
-
-
-
 </body></html>
