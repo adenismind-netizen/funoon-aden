@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ÙÙÙÙ Ø¹Ø¯Ù â ÙÙØ­Ø© Ø§ÙÙØªØ§Ø¨Ø¹Ø©</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js" integrity="sha384-iU8HYtnGQ8Cy4zl7gbNMOhsDTTKX02BTXptVP/vqAWIaTfM7isw76iyZCsjL2eVi" crossorigin="anonymous"></script>
+<style>
+:root { --cream:#FDF8F0; --dark:#1C1410; --gold:#C8973A; --terra:#C4714A; --muted:#8A7A6A; --soft:#F5EFE6; --border:#EDE7DC; --green:#5A8A6A; --blue:#4A6CB3; --white:#fff; }
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Tajawal',Arial,sans-serif;background:var(--cream);color:var(--dark);direction:rtl;min-height:100vh;}
+
+.header{background:var(--white);border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10;}
+.brand{font-size:17px;font-weight:800;}
+.brand span{color:var(--terra);}
+.header-right{display:flex;align-items:center;gap:14px;}
+.live-pill{display:flex;align-items:center;gap:6px;background:#EDFAF2;border-radius99px;padding:5px 12px;font-size:12px;color:var(--green);font-weight:600;}
+.live-dot{width:7px;height:7px;background:var(--green);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%, 100%{opacity:1;}50%{opacity:0.3;}}
+.update-meta{font-size:11px;color:var(--muted);text-align:center;}
+.refresh-btn{background:var(--terra);color:white;border:none;border-radius:10px;padding:8px 18px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;}
+.refresh-btn:disabled{background:#C4B49A;cursor:not-allowed;}
+
+.container{max-width:1080px;margin:0 auto;padding:24px 16px;}
+
+.metrics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px;}
+.metric-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px 16px;text-align:center;}
+.metric-icon{font-size:24px;margin-bottom:8px;}
+.metric-label{font-size:11px;color:var(--muted);font-weight:600;margin-bottom:6px;letter-spacing:0.3px;}
+.metric-value{font-size:34px;font-weight:800;}
+.metric-sub{font-size:11px;color:var(--muted);margin-top:4px;}
+.c-gold{color:var(--gold);} .c-green{color:var(--green);} .c-terra{color:var(--terra);}
+
+.card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:18px;}
+.card-title{font-size:13px;font-weight:700;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+
+.progress-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.p-label{font-size:13px;color:#4A3F35;}
+.p-nums{font-size:13px;font-weight:700;}
+.bar-wrap{height:10px;background:var(--soft);border-radius:99px;overflow:hidden;margin-bottom:16px;}
+.bar-fill{height:100%;border-radius:99px;transition:width 1s ease;}
+.bg-green{background:var(--green);} .bg-gold{background:var(--gold);}
+.progress-note{font-size:11px;color:var(--muted);}
+
+.charts-grid{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:18px;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px;}
+.chart-wrap{position:relative;height:200px;}
+
+.bar-list{display:flex;flex-direction:column;gap:10px;margin-top:6px;}
+.bar-item{display:flex;align-items:center;gap:10px;}
+.bi-label{font-size:13px;color:#4A3F35;min-width:90px;}
+.bi-bar-wrap{flex:1;height:8px;background:var(--soft);border-radius:99px;overflow:hidden;}
+.bi-bar{height:100%;border-radius:99px;}
+.bi-count{font-size:12px;color:var(--muted);min-width:28px;text-align:left;}
+
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th{text-align:right;padding:8px 10px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);font-size:11px;white-space:nowrap;}
+td{padding:9px 10px;border-bottom:1px solid var(--soft);color:#4A3F35;}
+tr:last-child td{border-bottom:none;}
+
+.badge{display:inline-block;padding:2px 9px;border-radius:99px;font-size:11px;font-weight:600;}
+.b-a{background:#FEF5EF;color:var(--terra);}
+.b-b{background:#FEF9EC;color:var(--gold);}
+.b-c{background:#EDFAF2;color:var(--green);}
+.b-d{background:#E8F0FE;color:var(--blue);}
+.b-yes{background:#EDFAF2;color:var(--green);}
+.b-pend{background:#FEF9EC;color:var(--gold);}
+.b-no{background:var(--soft);color:var(--muted);}
+
+.loading{text-align:center;padding:80px 20px;color:var(--muted);font-size:15px;}
+.spinner{display:inline-block;width:28px;height:28px;border:3px solid var(--border);border-top-color:var(--terra);border-radius:50%;animation:spin .8s linear infinite;vertical-align:middle;margin-left:8px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.error{color:var(--terra);text-align:center;padding:30px;font-size:14px;background:var(--white);border-radius:14px;border:1px solid var(--border);}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">ÙÙÙÙ <span>Ø¹Ø¯Ù</span> ð· â ÙÙØ­Ø© Ø§ÙÙØªØ§Ø¨Ø¹Ø©</div>
+  <div class="header-right">
+    <div class="live-pill"><span class="live-dot"></span>ÙØ¨Ø§Ø´Ø±</div>
+    <div class="update-meta">
+      <div id="lastUpdate">Ø¬Ø§Ø±Ù Ø§ÙØªØ­ÙÙÙ...</div>
+      <div id="countdown" style="color:var(--muted);font-size:11px;"></div>
+    </div>
+    <button class="refresh-btn" id="refreshBtn" onclick="loadAll(true)">ð ØªØ­Ø¯ÙØ«</button>
+  </div>
+</div>
+
+<div class="container">
+  <div id="root"><div class="loading"><span class="spinner"></span> Ø¬Ø§Ø±Ù Ø¬ÙØ¨ Ø§ÙØ¨ÙØ§ÙØ§Øª ÙÙ Supabase...</div></div>
+</div>
+
+<script>
+const API = 'https://bjxrzdexgplgjptneomv.supabase.co/functions/v1/dashboard-api';
+let chartLeads = null, chartPat = null, countdownInterval = null;
+const INTERVAL = 300;
+let secLeft = INTERVAL;
+
+const PAT_LABEL = {A:'ÙÙÙ',B:'ØªÙØ§Ø¯Ù',C:'ÙØ¶Ø·Ø±Ø¨',D:'Ø¢ÙÙ'};
+const PAT_COLOR = {A:'#C4714A',B:'#C8973A',C:'#5A8A6A',D:'#4A6CB3'};
+const PAT_CLASS = {A:'b-a',B:'b-b',C:'b-c',D:'b-d'};
+
+function pct(a,b){return b>0?Math.round(a/b*100):0;}
+
+async function loadAll(manual=false){
+  const btn=document.getElementById('refreshBtn');
+  if(btn){btn.disabled=true;btn.textContent='â³';}
+  try {
+    const r=await fetch(API);
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    const d=await r.json();
+    render(d);
+    const n=new Date();
+    document.getElementById('lastUpdate').textContent=
+      'Ø¢Ø®Ø± ØªØ­Ø¯ÙØ«: '+String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0');
+    startCountdown();
+  } catch(e){
+    const root=document.getElementById('root');
+    if(root.querySelector('.loading'))
+      root.innerHTML='<div class="error">â ï¸ ØªØ¹Ø°ÙØ± Ø¬ÙØ¨ Ø§ÙØ¨ÙØ§ÙØ§Øª â '+e.message+'<br><br>ØªØ­ÙÙÙÙ ÙÙ Ø§ØªØµØ§Ù Ø§ÙØ¥ÙØªØ±ÙØª Ø«Ù Ø§Ø¶ØºØ·Ù ØªØ­Ø¯ÙØ«.</div>';
+  }
+  if(btn){btn.disabled=false;btn.textContent='ð ØªØ­Ø¯ÙØ«';}
+}
+
+function startCountdown(){
+  if(countdownInterval) clearInterval(countdownInterval);
+  secLeft=INTERVAL;
+  countdownInterval=setInterval(()=>{
+    secLeft--;
+    const m=Math.floor(secLeft/60),s=secLeft%60;
+    document.getElementById('countdown').textContent='ØªØ­Ø¯ÙØ« Ø®ÙØ§Ù '+m+':'+String(s).padStart(2,'0');
+    if(secLeft<=0) loadAll(false);
+  },1000);
+}
+
+function render(d){
+  // Metrics
+  const metricsHTML=`
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="metric-icon">ð¥</div>
+      <div class="metric-label">Ø¥Ø¬ÙØ§ÙÙ Ø§ÙÙÙØ¯Ø²</div>
+      <div class="metric-value">${d.total}</div>
+      <div class="metric-sub">+${d.thisWeek} ÙØ°Ø§ Ø§ÙØ£Ø³Ø¨ÙØ¹</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-icon">ð±</div>
+      <div class="metric-label">Ø§ÙÙÙÙ</div>
+      <div class="metric-value c-gold">+${d.today}</div>
+      <div class="metric-sub">ÙÙØ¯ Ø¬Ø¯ÙØ¯Ø©</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-icon">â</div>
+      <div class="metric-label">Ø¨ÙØ§Ø³Øª Ø§ÙÙÙØµØ© Ø£ÙØ±Ø³Ù</div>
+      <div class="metric-value c-green">${d.blastSent}</div>
+      <div class="metric-sub">${pct(d.blastSent,d.total)}% ÙÙ Ø§ÙØ¥Ø¬ÙØ§ÙÙ</div>
+    </div>
+  </div>`;
+
+  // Progress
+  const progressHTML=`
+  <div class="card">
+    <div class="card-title">ð¤ ØªÙØ¯Ù Ø¨ÙØ§Ø³Øª Ø§ÙÙÙØµØ© â Ø±Ø³Ø§Ø¦Ù Ø¯Ø¹ÙØ© aden-art.lovable.app</div>
+    <div class="progress-row">
+      <div class="p-label">Ø£ÙØ±Ø³ÙØª â</div>
+      <div class="p-nums c-green">${d.blastSent} ÙÙ ${d.total} (${pct(d.blastSent,d.total)}%)</div>
+    </div>
+    <div class="bar-wrap"><div class="bar-fill bg-green" style="width:${pct(d.blastSent,d.total)}%"></div></div>
+    <div class="progress-row">
+      <div class="p-label">ÙØªØ¨ÙÙØ© â³</div>
+      <div class="p-nums c-gold">${d.blastPending} ÙÙØ¯</div>
+    </div>
+    <div class="bar-wrap"><div class="bar-fill bg-gold" style="width:${pct(d.blastPending,d.total)}%"></div></div>
+    <div class="progress-note">âï¸ platform-blast ØªØ¹ÙÙ ØªÙÙØ§Ø¦ÙØ§Ù ÙÙ 10 Ø¯ÙØ§Ø¦Ù â 7 Ø±Ø³Ø§Ø¦Ù/Ø¯ÙØ±Ø© â ÙØ­ÙÙØ© ÙÙ Ø§ÙØªÙØ±Ø§Ø±</div>
+  </div>`;
+
+  // Sources
+  const srcEntries=Object.entries(d.sources).sort((a,b)=>b[1]-a[1]);
+  const maxSrc=srcEntries[0]?.[1]||1;
+  const sourcesHTML=srcEntries.map(([src,cnt])=>`
+    <div class="bar-item">
+      <div class="bi-label">${src}</div>
+      <div class="bi-bar-wrap"><div class="bi-bar" style="width:${pct(cnt,maxSrc)}%;background:var(--terra);"></div></div>
+      <div class="bi-count">${cnt}</div>
+    </div>`).join('');
+
+  // Pattern bars
+  const patHTML=Object.entries(d.patterns).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`
+    <div class="bar-item">
+      <div class="bi-label">${PAT_LABEL[k]||k} (${k})</div>
+      <div class="bi-bar-wrap"><div class="bi-bar" style="width:${pct(v,d.total)}%;background:${PAT_COLOR[k]||'#888'};"></div></div>
+      <div class="bi-count">${v}</div>
+    </div>`).join('');
+
+  // Table
+  const tableRows=(d.recent||[]).map(l=>{
+    const dt=new Date(l.date);
+    const ds=`${dt.getDate()}/${dt.getMonth()+1} ${String(dt.getHours()).padStart(2,'0')}:${String(dt.getMinutes()).padStart(2,'0')}`;
+    const blastBadge=l.blast===true
+      ?'<span class="badge b-yes">Ø£ÙØ±Ø³Ù</span>'
+      :l.blast===false
+        ?'<span class="badge b-no">ÙØ­Ø¬ÙØ²</span>'
+        :'<span class="badge b-pend">ÙØ¹ÙÙ</span>';
+    const d0=l.day0?'<span class="badge b-yes">â</span>':'<span class="badge b-no">â</span>';
+    return`<tr>
+      <td>${l.name}</td>
+      <td style="direction:ltr;text-align:right;font-size:12px;">${l.wa}</td>
+      <td><span class="badge ${PAT_CLASS[l.pattern]||''}">${PAT_LABEL[l.pattern]||l.pattern}</span></td>
+      <td>${l.source}</td>
+      <td>${d0}</td>
+      <td>${blastBadge}</td>
+      <td style="color:var(--muted);font-size:11px;">${ds}</td>
+    </tr>`;
+  }).join('');
+
+  document.getElementById('root').innerHTML=`
+    ${metricsHTML}
+    ${progressHTML}
+    <div class="charts-grid">
+      <div class="card" style="margin:0;">
+        <div class="card-title">ð Ø§ÙÙÙØ¯Ø² Ø¢Ø®Ø± 14 ÙÙÙ</div>
+        <div class="chart-wrap"><canvas id="cLeads"></canvas></div>
+      </div>
+      <div class="card" style="margin:0;">
+        <div class="card-title">ð§  ØªÙØ²ÙØ¹ Ø§ÙØ£ÙÙØ§Ø·</div>
+        <div class="chart-wrap"><canvas id="cPat"></canvas></div>
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="card" style="margin:0;">
+        <div class="card-title">ð Ø§ÙÙØµØ§Ø¯Ø±</div>
+        <div class="bar-list">${sourcesHTML}</div>
+      </div>
+      <div class="card" style="margin:0;">
+        <div class="card-title">ð Ø§ÙØ£ÙÙØ§Ø·</div>
+        <div class="bar-list">${patHTML}</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">ð Ø¢Ø®Ø± 20 ÙÙØ¯</div>
+      <table>
+        <thead><tr><th>Ø§ÙØ§Ø³Ù</th><th>Ø§ÙÙØ§ØªØ³Ø§Ø¨</th><th>Ø§ÙÙÙØ·</th><th>Ø§ÙÙØµØ¯Ø±</th><th>ÙÙÙ 0</th><th>Ø¨ÙØ§Ø³Øª</th><th>Ø§ÙØªØ§Ø±ÙØ®</th></tr></thead>
+        <tbody>${tableRows}</tbody>
+      </table>
+    </div>`;
+
+  // Charts
+  const dailyEntries=Object.entries(d.daily);
+  const labels=dailyEntries.map(([k])=>{const p=k.split('-');return p[2]+'/'+p[1];});
+  const vals=dailyEntries.map(([,v])=>v);
+
+  if(chartLeads) chartLeads.destroy();
+  chartLeads=new Chart(document.getElementById('cLeads'),{
+    type:'bar',
+    data:{labels,datasets:[{data:vals,backgroundColor:'#C4714A',borderRadius:6,borderSkipped:false}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+      scales:{x:{grid:{display:false},ticks:{font:{size:10},maxRotation:0}},
+              y:{grid:{color:'#F5EFE6'},ticks:{font:{size:10},stepSize:5},beginAtZero:true}}}
+  });
+
+  if(chartPat) chartPat.destroy();
+  chartPat=new Chart(document.getElementById('cPat'),{
+    type:'doughnut',
+    data:{
+      labels:['ÙÙÙ (A)','ØªÙØ§Ø¯Ù (B)','ÙØ¶Ø·Ø±Ø¨ (C)','Ø¢ÙÙ (D)'],
+      datasets:[{data:[d.patterns.A,d.patterns.B,d.patterns.C,d.patterns.D],
+        backgroundColor:['#C4714A','#C8973A','#5A8A6A','#4A6CB3'],borderWidth:0,hoverOffset:6}]
+    },
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{position:'bottom',rtl:true,labels:{font:{size:11},boxWidth:12,padding:8}}}}
+  });
+}
+
+loadAll(true);
+</script>
+</body>
+</html>
