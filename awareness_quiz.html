@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ما مستوى وعيك الذاتي؟ — فنون عدن 🌷</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #FDF8F0;
+    --dark: #1C1410;
+    --gold: #C8973A;
+    --rose: #C96B6B;
+    --terracotta: #C4714A;
+    --soft: #F5EFE6;
+    --muted: #8A7A6A;
+    --green: #5A8A6A;
+  }
+
+  body {
+    font-family: 'Tajawal', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    min-height: 100vh;
+    direction: rtl;
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    text-align: center;
+    padding: 28px 20px 20px;
+    background: white;
+    border-bottom: 1px solid #EDE7DC;
+  }
+  .brand { font-size: 15px; color: var(--muted); font-weight: 500; letter-spacing: 0.5px; }
+  .brand span { color: var(--terracotta); }
+
+  /* ===== PROGRESS ===== */
+  .progress-wrap { padding: 20px 24px 0; max-width: 520px; margin: 0 auto; display: none; }
+  .progress-wrap.visible { display: block; }
+  .progress-label { font-size: 13px; color: var(--muted); margin-bottom: 8px; display: flex; justify-content: space-between; }
+  .progress-bar { height: 6px; background: #EDE7DC; border-radius: 99px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--terracotta), var(--gold)); border-radius: 99px; transition: width 0.4s ease; }
+
+  /* ===== SCREEN ===== */
+  .screen { display: none; padding: 28px 20px 40px; max-width: 520px; margin: 0 auto; }
+  .screen.active { display: block; }
+  .screen-center { text-align: center; }
+
+  /* ===== INTRO ===== */
+  .intro-emoji { font-size: 52px; margin-bottom: 16px; line-height: 1; }
+  .intro-title { font-size: 28px; font-weight: 800; line-height: 1.3; margin-bottom: 12px; color: var(--dark); }
+  .intro-title span { color: var(--terracotta); }
+  .intro-sub { font-size: 16px; color: var(--muted); line-height: 1.7; max-width: 380px; margin: 0 auto 28px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 32px; }
+  .tag { background: var(--soft); border: 1px solid #EDE7DC; border-radius: 99px; padding: 6px 14px; font-size: 13px; color: var(--muted); }
+
+  /* ===== BUTTONS ===== */
+  .btn-primary {
+    display: block; width: 100%; padding: 16px 24px;
+    background: var(--terracotta); color: white;
+    border: none; border-radius: 14px;
+    font-family: 'Tajawal', sans-serif; font-size: 17px; font-weight: 700;
+    cursor: pointer; transition: all 0.2s; text-align: center; text-decoration: none;
+  }
+  .btn-primary:hover { background: #B5613C; transform: translateY(-1px); }
+  .btn-gold {
+    display: block; width: 100%; padding: 16px 24px;
+    background: var(--gold); color: white;
+    border: none; border-radius: 14px;
+    font-family: 'Tajawal', sans-serif; font-size: 17px; font-weight: 700;
+    cursor: pointer; transition: all 0.2s; text-align: center; text-decoration: none;
+  }
+  .btn-gold:hover { background: #B5852E; transform: translateY(-1px); }
+  .btn-outline {
+    display: block; width: 100%; padding: 14px 24px;
+    background: transparent; color: var(--muted);
+    border: 1.5px solid #DDD5C8; border-radius: 14px;
+    font-family: 'Tajawal', sans-serif; font-size: 15px; font-weight: 500;
+    cursor: pointer; transition: all 0.2s; text-align: center; text-decoration: none;
+    margin-top: 12px;
+  }
+  .btn-outline:hover { border-color: var(--terracotta); color: var(--terracotta); }
+
+  /* ===== QUESTION ===== */
+  .q-number { font-size: 13px; color: var(--muted); margin-bottom: 10px; font-weight: 500; }
+  .q-text { font-size: 20px; font-weight: 700; line-height: 1.5; margin-bottom: 24px; color: var(--dark); }
+  .options { display: flex; flex-direction: column; gap: 12px; }
+  .option-btn {
+    padding: 16px 20px; background: white;
+    border: 2px solid #EDE7DC; border-radius: 14px;
+    font-family: 'Tajawal', sans-serif; font-size: 15px; color: var(--dark);
+    cursor: pointer; text-align: right; transition: all 0.2s; line-height: 1.4;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .option-btn:hover { border-color: var(--terracotta); background: #FEF5EF; }
+  .option-btn.selected { border-color: var(--terracotta); background: #FEF5EF; color: var(--terracotta); font-weight: 600; }
+
+  /* ===== FORM ===== */
+  .form-title { font-size: 22px; font-weight: 800; margin-bottom: 6px; }
+  .form-sub { font-size: 14px; color: var(--muted); margin-bottom: 24px; line-height: 1.6; }
+  .form-group { margin-bottom: 16px; }
+  .form-group label { display: block; font-size: 14px; font-weight: 600; color: var(--dark); margin-bottom: 8px; }
+  .form-group input {
+    width: 100%; padding: 14px 16px;
+    border: 2px solid #EDE7DC; border-radius: 12px;
+    font-family: 'Tajawal', sans-serif; font-size: 16px; color: var(--dark);
+    background: white; outline: none; transition: border-color 0.2s;
+    direction: rtl;
+  }
+  .form-group input:focus { border-color: var(--terracotta); }
+  .form-note { font-size: 12px; color: var(--muted); text-align: center; margin-top: 12px; line-height: 1.6; }
+
+  /* ===== RESULT ===== */
+  .result-header { padding: 28px 20px 24px; text-align: center; }
+  .result-badge {
+    display: inline-block; padding: 8px 20px;
+    border-radius: 99px; font-size: 13px; font-weight: 700;
+    margin-bottom: 16px; letter-spacing: 0.5px;
+  }
+  .badge-beginner { background: #FEF5EF; color: var(--terracotta); border: 1px solid #F0CCBA; }
+  .badge-growing  { background: #FEF9EC; color: var(--gold);       border: 1px solid #EDD99A; }
+  .badge-aware    { background: #EDFAF2; color: var(--green);      border: 1px solid #AADCC0; }
+
+  .result-emoji { font-size: 56px; margin-bottom: 12px; }
+  .result-title { font-size: 26px; font-weight: 800; margin-bottom: 8px; color: var(--dark); }
+  .result-score { font-size: 15px; color: var(--muted); margin-bottom: 20px; }
+  .result-desc {
+    background: white; border-radius: 16px; padding: 20px;
+    font-size: 15px; line-height: 1.8; color: #4A3F35;
+    margin-bottom: 20px; border: 1px solid #EDE7DC; text-align: right;
+  }
+
+  .traits { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px; }
+  .trait {
+    background: white; border: 1px solid #EDE7DC; border-radius: 12px;
+    padding: 14px; text-align: center;
+  }
+  .trait-icon { font-size: 22px; margin-bottom: 6px; }
+  .trait-label { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+  .trait-value { font-size: 14px; font-weight: 700; color: var(--dark); }
+
+  .cta-card {
+    background: linear-gradient(135deg, #2D1B0E 0%, #4A2810 100%);
+    border-radius: 20px; padding: 24px; margin-bottom: 16px; text-align: center;
+  }
+  .cta-card .cta-label { font-size: 12px; color: #C8973A; font-weight: 700; letter-spacing: 1px; margin-bottom: 10px; text-transform: uppercase; }
+  .cta-card .cta-title { font-size: 20px; font-weight: 800; color: white; margin-bottom: 8px; line-height: 1.4; }
+  .cta-card .cta-sub { font-size: 14px; color: #C4B49A; margin-bottom: 20px; line-height: 1.6; }
+  .cta-features { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; text-align: right; }
+  .cta-feat { font-size: 13px; color: #D4C4AE; display: flex; align-items: center; gap: 8px; }
+  .cta-feat::before { content: "✦"; color: var(--gold); flex-shrink: 0; }
+  .promo-box { background: rgba(200,151,58,0.15); border: 1px solid rgba(200,151,58,0.3); border-radius: 10px; padding: 10px 16px; margin-bottom: 20px; font-size: 13px; color: #C8973A; font-weight: 600; }
+
+  /* ===== LOADING ===== */
+  .loading-screen { text-align: center; padding: 60px 20px; }
+  .spinner { width: 48px; height: 48px; border: 4px solid #EDE7DC; border-top-color: var(--terracotta); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 20px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-text { font-size: 16px; color: var(--muted); }
+
+  /* ===== DIVIDER ===== */
+  .divider { height: 1px; background: #EDE7DC; margin: 20px 0; }
+
+  .privacy-note { text-align: center; font-size: 12px; color: #BBB0A4; margin-top: 16px; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="brand">فنون <span>عدن</span> 🌷</div>
+</div>
+
+<!-- PROGRESS BAR -->
+<div class="progress-wrap" id="progressWrap">
+  <div class="progress-label">
+    <span id="progressText">السؤال 1 من 5</span>
+    <span id="progressPct">0%</span>
+  </div>
+  <div class="progress-bar">
+    <div class="progress-fill" id="progressFill" style="width:0%"></div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 0: INTRO ===== -->
+<div class="screen active screen-center" id="s0">
+  <div class="intro-emoji">🌿</div>
+  <h1 class="intro-title">م�� مستوى<br><span>وعيك الذاتي؟</span></h1>
+  <p class="intro-sub">
+    اختبار قصير من 5 أسئلة يكشف كيف تفهمين مشاعرك وتتعاملين مع نفسك في العلافات
+  </p>
+  <div class="tags">
+    <span class="tag">⏱ دقيقتان فقط</span>
+    <span class="tag">🎯 نتيجة دقيقة</span>
+    <span class="tag">💛 مجاني تماماً</span>
+  </div>
+  <button class="btn-primary" onclick="startQuiz()">ابدئي الاختبار 🌷</button>
+  <p class="privacy-note">لا حاجة لتسجيل — نتيجتك خاصة بكِ</p>
+</div>
+
+<!-- ===== SCREENS 1-5: QUESTIONS ===== -->
+<div class="screen" id="s1">
+  <div class="q-number">السؤال ١ من ٥</div>
+  <div class="q-text">عندما تشعرين بمشاعر قوية (خوف، حزن، غضب) — ماذا يحدث عادةً؟</div>
+  <div class="options">
+    <button class="option-btn" onclick="answer(1,1)">أحاول أتجاهلها وأكمّل يومي بشكل طبيعي</button>
+    <button class="option-btn" onclick="answer(1,2)">أشعر بها لكن م�� أعرف من أين جاءت بالضبط</button>
+    <button class="option-btn" onclick="answer(1,3)">أعترف بها وأحاول أفهم سببها</button>
+    <button class="option-btn" onclick="answer(1,4)">أتوقف، أسمّيها بوضوح، وأتعامل معها بوعي</button>
+  </div>
+</div>
+
+<div class="screen" id="s2">
+  <div class="q-number">السؤال ٢ من ٥</div>
+  <div class="q-text">حين ينتقدك شخص قريب — م�� ردة فعلك الداخلية الأولى؟</div>
+  <div class="options">
+    <button class="option-btn" onclick="answer(2,1)">أتألم كثيراً وأشكّ في نفسي فترة طويلة</button>
+    <button class="option-btn" onclick="answer(2,2)">أدافع عن نفسي فوراً أو أصمت غاضبة</button>
+    <button class="option-btn" onclick="answer(2,3)">أحاول أفهم قصده قبل م�� أردّ</button>
+    <button class="option-btn" onclick="answer(2,4)">أفصل بين النقد المفيد وغير المفيد بهدوء</button>
+  </div>
+</div>
+
+<div class="screen" id="s3">
+  <div class="q-number">السؤال ٣ من ٥</div>
+  <div class="q-text">هل تعرفين ما الذي "يُشعل" ردود أفعالك العاطفية؟</div>
+  <div class="options">
+    <button class="option-btn" onclick="answer(3,1)">لا، مشاعري تجيني فجأة بدون تحذير</button>
+    <button class="option-btn" onclick="answer(3,2)">أحياناً أتعرف عليها بعد م�� تمر اللحظة</button>
+    <button class="option-btn" onclick="answer(3,3)">أعرف بعض المحفّزات لكن مو كلها</button>
+    <button class="option-btn" onclick="answer(3,4)">نعم، أعرف محفّزاتي وأتعامل معها بشكل واعٍ</button>
+  </div>
+</div>
+
+<div class="screen" id="s4">
+  <div class="q-number">السؤال ٤ من ٥</div>
+  <div class="q-text">كيف تضعين حدوداً في علاقاتك؟</div>
+  <div class="options">
+    <button class="option-btn" onclick="answer(4,1)">صعب عليّ أقول "لا" — أخاف تكسر العلاقة</button>
+    <button class="option-btn" onclick="answer(4,2)">أحياناً أقدر لكن بعدين أحس بذنب</button>
+    <button class="option-btn" onclick="answer(4,3)">أضع حدودي لكن أحتاج وقت لأعبّر عنها</button>
+    <button class="option-btn" onclick="answer(4,4)">أعرف حدودي وأعبّر عنها بوضوح وبدون اعتذار</button>
+  </div>
+</div>
+
+<div class="screen" id="s5">
+  <div class="q-number">السؤال ٥ من ٥</div>
+  <div class="q-text">ما مدى معرفتك باحتياجاتك العاطفية الحقيقية؟</div>
+  <div class="options">
+    <button class="option-btn" onclick="answer(5,1)">ما أعرف وش أبغى بالضبط — متشوّشة</button>
+    <button class="option-btn" onclick="answer(5,2)">أحسّ بالاحتياج لكن ما أقدر أوصفه بكلمات</button>
+    <button class="option-btn" onclick="answer(5,3)">أعرف احتياجاتي الأساسية لكن ما أطلبها دايماً</button>
+    <button class="option-btn" onclick="answer(5,4)">أعرف احتياجاتي وأطلبها بطريقة صحية</button>
+  </div>
+</div>
+
+<!-- ===== SCREEN 6: FORM ===== -->
+<div class="screen screen-center" id="s6">
+  <div class="form-title">نتيجتك جاهزة! 🌷</div>
+  <p class="form-sub">أدخلي اسمك ورقم واتساب عشان أرسل لك نتيجتك الكاملة مع توجيه شخصي</p>
+  <div class="form-group">
+    <label>اسمك الأول</label>
+    <input type="text" id="nameInput" placeholder="مثال: سارة" autocomplete="off">
+  </div>
+  <div class="form-group">
+    <label>رقم واتساب</label>
+    <input type="tel" id="waInput" placeholder="05XXXXXXXX" autocomplete="off" dir="ltr" style="text-align:right">
+  </div>
+  <button class="btn-primary" onclick="submitForm()">عرضي نتيجتي 🌷</button>
+  <p class="form-note">🔒 بياناتك محمية ولن تُشارك مع أي جهة خارجية</p>
+</div>
+
+<!-- ===== LOADING ===== -->
+<div class="screen screen-center" id="sLoading">
+  <div class="loading-screen">
+    <div class="spinner"></div>
+    <div class="loading-text">جاري تحليل إجاباتك...</div>
+  </div>
+</div>
+
+<!-- ===== SCREEN RESULT ===== -->
+<div class="screen" id="sResult">
+  <!-- filled dynamically -->
+</div>
+
+
+<script>
+// ===== STATE =====
+const answers = {};
+let userName = '';
+let totalScore = 0;
+
+const SUPABASE_URL = 'https://bjxrzdexgplgjptneomv.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJqeHJ6ZGV4Z3BsZ2pwdG5lb212Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5NTY1MTMsImV4cCI6MjA5MjUzMjUxM30.PXlKTyzEGqCLl3YaXCj6akt0-y46lNWJX9ABPGV-cdk';
+const WASENDER_KEY = 'ea20603e8eb5a2a44df4e6fe3ff820a5fff42917437f6e74517864c79f80121a';
+const TELEGRAM_TOKEN = '8635501737:AAF0rZlAWi7JqtQNOm_7N5RwjcupNZAAu6A';
+const TELEGRAM_CHAT = '910178996';
+
+// ===== NAVIGATION =====
+function show(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function startQuiz() {
+  document.getElementById('progressWrap').classList.add('visible');
+  updateProgress(1, 5);
+  show('s1');
+}
+
+function updateProgress(current, total) {
+  const pct = Math.round(((current - 1) / total) * 100);
+  document.getElementById('progressText').textContent = `السؤال ${current} من ${total}`;
+  document.getElementById('progressPct').textContent = pct + '%';
+  document.getElementById('progressFill').style.width = pct + '%';
+}
+
+// ===== ANSWER =====
+function answer(qNum, score) {
+  answers[qNum] = score;
+
+  // highlight selected
+  const screen = document.getElementById('s' + qNum);
+  screen.querySelectorAll('.option-btn').forEach((btn, i) => {
+    btn.classList.toggle('selected', i === score - 1);
+  });
+
+  setTimeout(() => {
+    if (qNum < 5) {
+      updateProgress(qNum + 1, 5);
+      show('s' + (qNum + 1));
+    } else {
+      document.getElementById('progressFill').style.width = '100%';
+      document.getElementById('progressPct').textContent = '100%';
+      setTimeout(() => show('s6'), 300);
+    }
+  }, 350);
+}
+
+// ===== SCORE =====
+function calcScore() {
+  return Object.values(answers).reduce((a, b) => a + b, 0);
+}
+
+function getLevel(score) {
+  if (score <= 9)  return 'beginner';
+  if (score <= 15) return 'growing';
+  return 'aware';
+}
+
+const levels = {
+  beginner: {
+    badge: 'مرحلة الاكتشاف',
+    badgeClass: 'badge-beginner',
+    emoji: '🌱',
+    title: 'أنتِ في بداية رحلتك',
+    scoreLabel: (s) => `${s} من 20 — مرحلة الاكتشاف`,
+    desc: `مشاعرك أعمق مما تظنين، لكن حتى الآن لم تُعطَ الأدوات الصحيحة لفهمها. هذا لا يعني ضعفاً — يعني إن رحلتك الحقيقية لم تبدأ بعد. وهذا هو الوقت المثالي.`,
+    traits: [
+      { icon: '🔍', label: 'الوعي بالمشاعر', value: 'في بداياته' },
+      { icon: '🛡', label: 'الحدود الشخصية', value: 'تحتاج بناء' },
+      { icon: '💡', label: 'فهم الذات', value: 'جاهزة للنمو' },
+      { icon: '🌿', label: 'إمكانية التغيير', value: 'كبيرة جداً' },
+    ],
+    ctaTitle: 'فنون عدن صُمّمت لك تحديداً',
+    ctaSub: 'المسار اليومي 14 يوم سيعطيكِ الأدوات التي لم تجديها في أي مكان آخر',
+    whatsappMsg: (name) => `${name} 🌷\n\nنتيجة اختبار الوعي الذاتي:\n🌱 *أنتِ في مرحلة الاكتشاف*\n\nمشاعرك أعمق مما تظنين — وهذا بالضبط وقت البداية الصحيحة 💛\n\nمنصة فنون عدن لديها مسار يومي مخصص لهذه المرحلة:\n👉 https://aden-art.lovable.app\n\nجرّبيها مجاناً — فيها 15 رصيد هدية عند التسجيل 🌷`
+  },
+  growing: {
+    badge: 'في طور النمو',
+    badgeClass: 'badge-growing',
+    emoji: '🌸',
+    title: 'أنتِ في طور النمو الواعي',
+    scoreLabel: (s) => `${s} من 20 — وعي متوسط إلى متقدم`,
+    desc: `عندك قاعدة جيدة من الوعي الذاتي. تفهمين مشاعرك لكن أحياناً يصعب التعبيي عنها أو التعامل معها بالطريقة المثلى. أنتِ في المرحلة التي تنتظر أدوات تُسرّع نموها.`,
+    traits: [
+      { icon: '💭', label: 'الوعي بالمشاعر', value: 'جيد' },
+      { icon: '🛡', label: 'الحدود الشخصية', value: 'قيد التطوير' },
+      { icon: '🎯', label: 'فهم المحفّزات', value: 'جزئي' },
+      { icon: '🚀', label: 'إمكانية القفزة', value: 'عالية جداً' },
+    ],
+    ctaTitle: 'أنتِ على بُعد خطوة من مستوى مختلف',
+    ctaSub: 'أدوات فنون عدن الذكية ستأخذك من "أفهم نفسي أحياناً" إلى "أعيش بوعي دائم"',
+    whatsappMsg: (name) => `${name} 🌷\n\nنتيجة اختبار الوعي الذاتي:\n🌸 *أنتِ في طور امشاعرك*\n\nعندك قاعدة ممتازة — المطلوب الآن الأدوات الصحيحة لتسريع رحلتك 💛\n\nمنصة فنون عدن فيها أدوات ذكية مصممة لهذه المرحلة بالضبط:\n👉 https://aden-art.lovable.app\n\nوكود EDEN9 يعطيكِ خصماً عند الاشتراك 🌷`
+  },
+  aware: {
+    badge: 'وعي متقدم',
+    badgeClass: 'badge-aware',
+    emoji: '✨',
+    title: 'وعيكِ الذاتي متقدم',
+    scoreLabel: (s) => `${s} من 20 — مستوى متقدم`,
+    desc: `تفهمين مشاعرك وتعرفين محفّزاتك وتضعين حدوداً بوضوح. هذا وعي حقيقي تعبتِ عليه. التحدي الآن: كيف تستخدمين هذا الوعي في تحسين علاقاتك وقراراتك؟`,
+    traits: [
+      { icon: '💎', label: 'الوعي بالمشاعر', value: 'عالي' },
+      { icon: '🛡', label: 'الحدود الشخصية', value: 'واضحة' },
+      { icon: '🎯', label: 'فهم الذاڪ', value: 'متقدم' },
+      { icon: '🌟', label: 'التأثير في الآخرين', value: 'الخطوة التالية' },
+    ],
+    ctaTitle: 'أنتِ تستحقين أدوات بمستواكِ',
+    ctaSub: 'المدربة الذكية "عدن" وأدوات التحليل المتقدمة صُممت لمن وصل لمستواكِ',
+    whatsappMsg: (name) => `${name} 🌷\n\nنتيجة اختبار الوعي الذاتي:\n✨ *وعيكِ الذاتي متقدم*\n\nأنتِ من النساء اللواتي وصلن لمستوى حقيقي من الوعي — ونادرات 💛\n\nمنصة فنون عدن لديها أدوات بمستواكِ:\n👉 https://aden-art.lovable.app\n\nوكود EDEN9 متاح للاشتراك 🌷`
+  }
+};
+
+// ===== SUBMIT =====
+async function submitForm() {
+  const name = document.getElementById('nameInput').value.trim();
+  const wa = document.getElementById('waInput').value.trim();
+
+  if (!name) { document.getElementById('nameInput').focus(); return; }
+  if (!wa || wa.length < 9) { document.getElementById('waInput').focus(); return; }
+
+  userName = name;
+  show('sLoading');
+
+  totalScore = calcScore();
+  const level = getLevel(totalScore);
+  const src = new URLSearchParams(window.location.search).get('src') || 'direct';
+
+  // Save to Supabase
+  try {
+    await fetch(`${SUPABASE_URL}/rest/v1/quiz_leads`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_ANON,
+        'Authorization': `Bearer ${SUPABASE_ANON}`,
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({
+        name: name,
+        whatsapp: wa,
+        pattern: `وعي ذاتي — ${levels[level].badge}`,
+        pattern_key: 'AW_' + level.toUpperCase(),
+        book: 'منصة فنون عدن',
+        book_link: 'https://aden-art.lovable.app',
+        scores: JSON.stringify({ answers, total: totalScore, level, src })
+      })
+    });
+  } catch(e) { console.log('Supabase save error', e); }
+
+  // Send WhatsApp
+  try {
+    const waNum = wa.startsWith('+') ? wa : '+966' + wa.replace(/^0/, '');
+    await fetch('https://www.wasenderapi.com/api/send-message', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${WASENDER_KEY}`
+      },
+      body: JSON.stringify({ to: waNum, text: levels[level].whatsappMsg(name) })
+    });
+  } catch(e) { console.log('WhatsApp error', e); }
+
+  // Notify owner via Telegram
+  try {
+    const tgMsg = `🌷 ليد جديدة — اختبار الوعي الذاتي\n👤 ${name}\n📱 ${wa}\n📊 المستوى: ${levels[level].badge}\n🔢 النتيجة: ${totalScore}/20\n📡 المصدر: ${src}`;
+    await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT}&text=${encodeURIComponent(tgMsg)}`);
+  } catch(e) { console.log('Telegram error', e); }
+
+  // Show result after loading
+  setTimeout(() => {
+    buildResult(level);
+    show('sResult');
+  }, 1800);
+}
+
+// ===== BUILD RESULT =====
+function buildResult(level) {
+  const l = levels[level];
+  const scoreLabel = l.scoreLabel(totalScore);
+
+  const traitsHTML = l.traits.map(t => `
+    <div class="trait">
+      <div class="trait-icon">${t.icon}</div>
+      <div class="trait-label">${t.label}</div>
+      <div class="trait-value">${t.value}</div>
+    </div>
+  `).join('');
+
+  document.getElementById('sResult').innerHTML = `
+    <div class="result-header">
+      <span class="result-badge ${l.badgeClass}">${l.badge}</span>
+      <div class="result-emoji">${l.emoji}</div>
+      <div class="result-title">${l.title}</div>
+      <div class="result-score">${scoreLabel}</div>
+    </div>
+
+    <div style="padding: 0 20px 40px;">
+      <div class="result-desc">${l.desc}</div>
+
+      <div class="traits">${traitsHTML}</div>
+
+      <div class="cta-card">
+        <div class="cta-label">🌷 الخطوة التالية</div>
+        <div class="cta-title">${l.ctaTitle}</div>
+        <div class="cta-sub">${l.ctaSub}</div>
+        <div class="cta-features">
+          <div class="cta-feat">مسار يومي 14 يوم مخصص لوعيكِ</div>
+          <div class="cta-feat">أدوات AI: تحليل + ردود + تقييم الجاهزية</div>
+          <div class="cta-feat">مدربة ذكية "عدن" متاحة 24/7</div>
+          <div class="cta-feat">ضمان ذهبي 7 أيام — بدون مخاطرة</div>
+        </div>
+        <div class="promo-box">🎁 كود EDEN9 يعطيكِ خصماً على الاشتراك</div>
+        <a href="https://aden-art.lovable.app" class="btn-gold" target="_blank">ابدئي رحلتك في فنون عدن ✨</a>
+      </div>
+
+      <a href="https://aden-art.lovable.app" class="btn-outline" target="_blank">تعرّفي على المنصة أولاً</a>
+
+      <p class="privacy-note" style="margin-top:20px">
+        أُرسلت نتيجتك على واتساب 🌷<br>
+        <a href="https://adenismind-netizen.github.io/funoon-aden/quiz.html" style="color:var(--muted)">جرّبي اختبار أنماط التعلق أيضاً ←</a>
+      </p>
+    </div>
+  `;
+}
+</script>
+</body>
+</html>
