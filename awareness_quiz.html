@@ -187,9 +187,9 @@
 <!-- ===== SCREEN 0: INTRO ===== -->
 <div class="screen active screen-center" id="s0">
   <div class="intro-emoji">🌿</div>
-  <h1 class="intro-title">م�� مستوى<br><span>وعيك الذاتي؟</span></h1>
+  <h1 class="intro-title">ما مستوى<br><span>وعيك الذاتي؟</span></h1>
   <p class="intro-sub">
-    اختبار قصير من 5 أسئلة يكشف كيف تفهمين مشاعرك وتتعاملين مع نفسك في العلافات
+    اختبار قصير من 5 أسئلة يكشف كيف تفهمين مشاعرك وتتعاملين مع نفسك في العلاقات
   </p>
   <div class="tags">
     <span class="tag">⏱ دقيقتان فقط</span>
@@ -206,7 +206,7 @@
   <div class="q-text">عندما تشعرين بمشاعر قوية (خوف، حزن، غضب) — ماذا يحدث عادةً؟</div>
   <div class="options">
     <button class="option-btn" onclick="answer(1,1)">أحاول أتجاهلها وأكمّل يومي بشكل طبيعي</button>
-    <button class="option-btn" onclick="answer(1,2)">أشعر بها لكن م�� أعرف من أين جاءت بالضبط</button>
+    <button class="option-btn" onclick="answer(1,2)">أشعر بها لكن ما أعرف من أين جاءت بالضبط</button>
     <button class="option-btn" onclick="answer(1,3)">أعترف بها وأحاول أفهم سببها</button>
     <button class="option-btn" onclick="answer(1,4)">أتوقف، أسمّيها بوضوح، وأتعامل معها بوعي</button>
   </div>
@@ -214,308 +214,234 @@
 
 <div class="screen" id="s2">
   <div class="q-number">السؤال ٢ من ٥</div>
-  <div class="q-text">حين ينتقدك شخص قريب — م�� ردة فعلك الداخلية الأولى؟</div>
+  <div class="q-text">حين ينتقدك شخص قريب — ما ردة فعلك الداخلية الأولى؟</div>
   <div class="options">
     <button class="option-btn" onclick="answer(2,1)">أتألم كثيراً وأشكّ في نفسي فترة طويلة</button>
     <button class="option-btn" onclick="answer(2,2)">أدافع عن نفسي فوراً أو أصمت غاضبة</button>
-    <button class="option-btn" onclick="answer(2,3)">أحاول أفهم قصده قبل م�� أردّ</button>
-    <button class="option-btn" onclick="answer(2,4)">أفصل بين النقد المفيد وغير المفيد بهدوء</button>
-  </div>
-</div>
-
-<div class="screen" id="s3">
-  <div class="q-number">السؤال ٣ من ٥</div>
-  <div class="q-text">هل تعرفين ما الذي "يُشعل" ردود أفعالك العاطفية؟</div>
-  <div class="options">
-    <button class="option-btn" onclick="answer(3,1)">لا، مشاعري تجيني فجأة بدون تحذير</button>
-    <button class="option-btn" onclick="answer(3,2)">أحياناً أتعرف عليها بعد م�� تمر اللحظة</button>
-    <button class="option-btn" onclick="answer(3,3)">أعرف بعض المحفّزات لكن مو كلها</button>
-    <button class="option-btn" onclick="answer(3,4)">نعم، أعرف محفّزاتي وأتعامل معها بشكل واعٍ</button>
-  </div>
-</div>
-
-<div class="screen" id="s4">
-  <div class="q-number">السؤال ٤ من ٥</div>
-  <div class="q-text">كيف تضعين حدوداً في علاقاتك؟</div>
-  <div class="options">
-    <button class="option-btn" onclick="answer(4,1)">صعب عليّ أقول "لا" — أخاف تكسر العلاقة</button>
-    <button class="option-btn" onclick="answer(4,2)">أحياناً أقدر لكن بعدين أحس بذنب</button>
-    <button class="option-btn" onclick="answer(4,3)">أضع حدودي لكن أحتاج وقت لأعبّر عنها</button>
-    <button class="option-btn" onclick="answer(4,4)">أعرف حدودي وأعبّر عنها بوضوح وبدون اعتذار</button>
-  </div>
-</div>
-
-<div class="screen" id="s5">
-  <div class="q-number">السؤال ٥ من ٥</div>
-  <div class="q-text">ما مدى معرفتك باحتياجاتك العاطفية الحقيقية؟</div>
-  <div class="options">
-    <button class="option-btn" onclick="answer(5,1)">ما أعرف وش أبغى بالضبط — متشوّشة</button>
-    <button class="option-btn" onclick="answer(5,2)">أحسّ بالاحتياج لكن ما أقدر أوصفه بكلمات</button>
-    <button class="option-btn" onclick="answer(5,3)">أعرف احتياجاتي الأساسية لكن ما أطلبها دايماً</button>
-    <button class="option-btn" onclick="answer(5,4)">أعرف احتياجاتي وأطلبها بطريقة صحية</button>
-  </div>
-</div>
-
-<!-- ===== SCREEN 6: FORM ===== -->
-<div class="screen screen-center" id="s6">
-  <div class="form-title">نتيجتك جاهزة! 🌷</div>
-  <p class="form-sub">أدخلي اسمك ورقم واتساب عشان أرسل لك نتيجتك الكاملة مع توجيه شخصي</p>
-  <div class="form-group">
-    <label>اسمك الأول</label>
-    <input type="text" id="nameInput" placeholder="مثال: سارة" autocomplete="off">
-  </div>
-  <div class="form-group">
-    <label>رقم واتساب</label>
-    <input type="tel" id="waInput" placeholder="05XXXXXXXX" autocomplete="off" dir="ltr" style="text-align:right">
-  </div>
-  <button class="btn-primary" onclick="submitForm()">عرضي نتيجتي 🌷</button>
-  <p class="form-note">🔒 بياناتك محمية ولن تُشارك مع أي جهة خارجية</p>
-</div>
-
-<!-- ===== LOADING ===== -->
-<div class="screen screen-center" id="sLoading">
-  <div class="loading-screen">
-    <div class="spinner"></div>
-    <div class="loading-text">جاري تحليل إجاباتك...</div>
-  </div>
-</div>
-
-<!-- ===== SCREEN RESULT ===== -->
-<div class="screen" id="sResult">
-  <!-- filled dynamically -->
-</div>
+    <button class="option-btn" onclick="answer(2,3)">أحاول أفهم قصده قبل ما أردّ</button>
+    <button class="option-btn" onclick="answer(2,4)">أفصل بين امنقد المفق+�6b6.�b�,H6)�avav`vb�+�6*6a�+�b6(O؝]ۏ���]����]����]��\��H��ܙY[��YH��ȏ��]��\��H�K[�[X�\���)�a6,�)6)�a6h�6ava�6iO�]���]��\��H�K]^��a�a6*�.v,v`vb�a�6av)�6)�a6,6b��b�c�-6.va�6,v+�b6+�6(�`v.v)�a6`�6)�a6.v)�-�`vb�*v'��]���]��\��H��[ۜȏ���]ۈ�\��H��[ۋX���ۘ�X��H�[���\��JH��a6)�#6av-6)�.v,vb�6*�+6b�a�b�6`v+6(�*H6*6+�b6a�6*�+v,6b�,O؝]ۏ���]ۈ�\��H��[ۋX���ۘ�X��H�[���\���H��(�+vb�)�a�)�b�6(�*�.v,v`H6.va6b�a�)�6*6.v+�6av)�6*�av,H6)�a6a6+v.6*O؝]ۏ���]ۈ�\��H��[ۋX���ۘ�X��H�[���\���H��(�.v,v`H6*6.v-�6)�a6av+v`vdv,�)�*�6a6`�a�6avb6`�ava�)�؝]ۏ���]ۈ�\��H��[ۋX���ۘ�X��H�[���\��
+H��a�.vav#6(�.v,v`H6av+v`vdv,�)�*�b�6b6(�*�.v)�ava6av.va�)�6*6-6`�a6b6)�.vcO؝]ۏ���]����]����]��\��H��ܙY[��YH�����]��\��H�K[�[X�\���)�a6,�)6)�a6i6ava�6iO�]���]��\��H�K]^��`�b�`H6*�-�.vb�a�6+v+�b6+�)�b�6`vb�6.vav)�`�)�*�`�'��]���]��\��H��[ۜȏ���]ۈ�\��H��[ۋX���ۘ�X��H�[���\�
+JH��-v.v*6.va6b�dH6(�`�b6a�a6)Ȉ8�%6(�+�)�`H6*�`�,�,H6)�a6.va6)�`�*O؝]ۏ���]ۈ�\��H��[ۋX���ۘ�X��H�[���\�
+�H��(�+vbv)�a�)�b�6(�`�+�,H6a6`�a�6*6.v+�b�a�6(�+v,�6*6,6a�*؝]ۏ���]ۈ�\��H��[ۋX���ۘ�X��H�[���\�
+�H��(�.6.H6+v+�b6+�b�6a6`�a�6(�+v*�)�+6b6`�*�6a6(�.v*6dv,H6.va�a�)�؝]ۏ���]ۈ�\��H��[ۋX���ۘ�X��H�[���\�
+
+H��(�.v,v`H6+v+�b6+�b�6b6(�.v*6dv,H6.va�a�)�6*6b6.6b6+H6b6*6+�b6a�6)�.v*�,6)�,O؝]ۏ���]����]����]��\��H��ܙY[��YH��H���]��\��H�K[�[X�\���)�a6,�)6)�a6iH6ava�6iO�]���]��\��H�K]^��av)�6av+�bH6av.v,v`v*�`�6*6)�+v*�b�)�+6)�*�`�6)�a6.v)�-�`vb�*H6)�a6+v`�b�`�b�*v'��]���]��\��H��[ۜȏ���]ۈ�\��H��[ۋX���ۘ�X��H�[���\�
+KJH��av)�6(�.v,v`H6b6-6(�*6.�bH6*6)�a6-�*6-�8�%6av*�-6b6dv-6*O؝]ۏ���]ۈ�\��H��[ۋX���ۘ�X��H�[���\�
+K�H��(�+v,�dH6*6)�a6)�+v*�b�)�+6a6`�a�6av)�6(�`�+�,H6(�b6-v`va�6*6`�avav)�*�؝]ۏ���]ۈ�\��H��[ۋX���ۘ�X��H�[���\�
+K�H��(�.v,v`H6)�+v*�b�)�+6)�*�b�6)�a6(�,�)�,�b�*H6a6`�a�6av)�6(�-�a6*6a�)�6+�)�b�av)�b�؝]ۏ���]ۈ�\��H��[ۋX���ۘ�X��H�[���\�
+K
+H��(�.v,v`H6)�+v*�b�)�+6)�*�b�6b6(�-�a6*6a�)�6*6-�,vb�`�*H6-v+vb�*O؝]ۏ���]����]����KKHOOOOH�ԑQS�
+���ԓHOOOOHKO��]��\��H��ܙY[��ܙY[�X�[�\��YH�͈���]��\��H��ܛK]]H��a�*�b�+6*�`�6+6)�a�,�*HH<'�-��]����\��H��ܛK\�X���(�+�+�a6b�6)�,�av`�6b6,v`�aH6b6)�*�,�)�*6.v-6)�a�6(�,v,�a6a6`�6a�*�b�+6*�`�6)�a6`�)�ava6*H6av.H6*�b6+6b�a�6-6+�-vb����]��\��H��ܛKYܛ�\���X�[�)�,�av`�6)�a6(�b6a�X�[��[�]\OH�^�YH��[YR[�]�X�Z�\�H�av*�)�a�6,�)�,v*H�]]���\]OH�ٙ�����]���]��\��H��ܛKYܛ�\���X�[�,v`�aH6b6)�*�,�)�*�X�[��[�]\OH�[�YH��R[�]�X�Z�\�H�
+V�]]���\]OH�ٙ��\�H����[OH�^X[Yێ��Y�����]����]ۈ�\��H���\�[X\�H�ۘ�X��H��X�Z]�ܛJ
+H��.v,v-�b�6a�*�b�+6*�b�<'�-�؝]ۏ���\��H��ܛK[��H��'�$�6*6b�)�a�)�*�`�6av+vavb�*H6b6a6a�6*�c�-6)�,v`�6av.H6(�b�6+6a�*H6+�)�,v+6b�*O����]����KKHOOOOH�QS��OOOOHKO��]��\��H��ܙY[��ܙY[�X�[�\��YH���Y[�ȏ��]��\��H��Y[��\�ܙY[����]��\��H��[��\����]���]��\��H��Y[��]^��+6)�,vb�6*�+va6b�a6)v+6)�*6)�*�`ˋ���]����]����]����KKHOOOOH�ԑQS��T�SOOOOHKO��]��\��H��ܙY[��YH�ԙ\�[���KKH�[Y[�[ZX�[HKO���]������ܚ\����OOOOH�UHOOOOB��ۜ�[���\��H�N]\�\��[YHH	��]�[��ܙHH��ۜ��TP�T�W�T�H	�΋�ؚ���^�ڜ�[�]���\X�\�K�����ۜ��TP�T�W�S�ӈH	�^R����S�R�U^�LS�R\�[��X��M�Z��ҎK�^R���ZS�R���[Q����\�[���RM�[R�YR���Ս�М֌���[��L�Z]�X�N\֔�M�[Q�X��SҜVZSڑLӞ�MS�LSU\�[U���M�Z�MSZ�^�Z�^L���^�Q�P��XVڍ�Z�^M
+��ҖPP�ՋX����ۜ��T�S�T���VHH	�XL�
+��NX�XL�M
+�M��Lٙ��MY����LM��ٍ�M�
+LM�
+���Y�L�XI��ۜ�SQԐSW���S�H	�
+��MLM��ΐPQ���U�MҜ]S��W�ӍT�ژ�\��P]M�I��ۜ�SQԐSW��UH	�LLM�NM�����OOOOH�U�Q�USӈOOOOB��[��[ۈ���Y
+H��[Y[��]Y\�T�[X�ܐ[
+	˜�ܙY[��K��ܑXX�
+�O�˘�\��\���[[ݙJ	�X�]�I�JN��[Y[���][[Y[��RY
+Y
+K��\��\��Y
+	�X�]�I�NB���[��[ۈ�\�]Z^�
+H��[Y[���][[Y[��RY
+	���ܙ\��ܘ\	�K��\��\��Y
+	ݚ\�X�I�N\]T��ܙ\��K
+JN���	��I�NB���[��[ۈ\]T��ܙ\���\��[��[
+H�ۜ��HX]���[�
 
 
-<script>
-// ===== STATE =====
-const answers = {};
-let userName = '';
-let totalScore = 0;
+�\��[�HJH��[
+H
+�L
+N��[Y[���][[Y[��RY
+	���ܙ\��^	�K�^�۝[�H6)�a6,�)6)�a	��\��[�H6ava�	��[X��[Y[���][[Y[��RY
+	���ܙ\���	�K�^�۝[�H�
+�	�I���[Y[���][[Y[��RY
+	���ܙ\�њ[	�K��[K��YH�
+�	�I�B����OOOOHS���T�OOOOB��[��[ۈ[���\�S�[K��ܙJH[���\���S�[WHH��ܙN���Y�Y��[X�Y��ۜ��ܙY[�H��[Y[���][[Y[��RY
+	���
+�S�[JN�ܙY[��]Y\�T�[X�ܐ[
+	˛�[ۋX���K��ܑXX�
 
-const SUPABASE_URL = 'https://bjxrzdexgplgjptneomv.supabase.co';
-const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJqeHJ6ZGV4Z3BsZ2pwdG5lb212Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5NTY1MTMsImV4cCI6MjA5MjUzMjUxM30.PXlKTyzEGqCLl3YaXCj6akt0-y46lNWJX9ABPGV-cdk';
-const WASENDER_KEY = 'ea20603e8eb5a2a44df4e6fe3ff820a5fff42917437f6e74517864c79f80121a';
-const TELEGRAM_TOKEN = '8635501737:AAF0rZlAWi7JqtQNOm_7N5RwjcupNZAAu6A';
-const TELEGRAM_CHAT = '910178996';
+��JHO�����\��\�����J	��[X�Y	�HOOH��ܙHHJNJN��][Y[�]
 
-// ===== NAVIGATION =====
-function show(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-}
 
-function startQuiz() {
-  document.getElementById('progressWrap').classList.add('visible');
-  updateProgress(1, 5);
-  show('s1');
-}
+HO�Y�
+S�[H
+JH\]T��ܙ\��S�[H
+�K
+JN���	���
+�
+S�[H
+�JJNH[�H��[Y[���][[Y[��RY
+	���ܙ\�њ[	�K��[K��YH	�L	I���[Y[���][[Y[��RY
+	���ܙ\���	�K�^�۝[�H	�L	I��][Y[�]
 
-function updateProgress(current, total) {
-  const pct = Math.round(((current - 1) / total) * 100);
-  document.getElementById('progressText').textContent = `السؤال ${current} من ${total}`;
-  document.getElementById('progressPct').textContent = pct + '%';
-  document.getElementById('progressFill').style.width = pct + '%';
-}
 
-// ===== ANSWER =====
-function answer(qNum, score) {
-  answers[qNum] = score;
-
-  // highlight selected
-  const screen = document.getElementById('s' + qNum);
-  screen.querySelectorAll('.option-btn').forEach((btn, i) => {
-    btn.classList.toggle('selected', i === score - 1);
-  });
-
-  setTimeout(() => {
-    if (qNum < 5) {
-      updateProgress(qNum + 1, 5);
-      show('s' + (qNum + 1));
-    } else {
-      document.getElementById('progressFill').style.width = '100%';
-      document.getElementById('progressPct').textContent = '100%';
-      setTimeout(() => show('s6'), 300);
-    }
-  }, 350);
-}
-
-// ===== SCORE =====
-function calcScore() {
-  return Object.values(answers).reduce((a, b) => a + b, 0);
-}
-
-function getLevel(score) {
-  if (score <= 9)  return 'beginner';
-  if (score <= 15) return 'growing';
-  return 'aware';
-}
-
-const levels = {
-  beginner: {
-    badge: 'مرحلة الاكتشاف',
-    badgeClass: 'badge-beginner',
-    emoji: '🌱',
-    title: 'أنتِ في بداية رحلتك',
-    scoreLabel: (s) => `${s} من 20 — مرحلة الاكتشاف`,
-    desc: `مشاعرك أعمق مما تظنين، لكن حتى الآن لم تُعطَ الأدوات الصحيحة لفهمها. هذا لا يعني ضعفاً — يعني إن رحلتك الحقيقية لم تبدأ بعد. وهذا هو الوقت المثالي.`,
-    traits: [
-      { icon: '🔍', label: 'الوعي بالمشاعر', value: 'في بداياته' },
-      { icon: '🛡', label: 'الحدود الشخصية', value: 'تحتاج بناء' },
-      { icon: '💡', label: 'فهم الذات', value: 'جاهزة للنمو' },
-      { icon: '🌿', label: 'إمكانية التغيير', value: 'كبيرة جداً' },
-    ],
-    ctaTitle: 'فنون عدن صُمّمت لك تحديداً',
-    ctaSub: 'المسار اليومي 14 يوم سيعطيكِ الأدوات التي لم تجديها في أي مكان آخر',
-    whatsappMsg: (name) => `${name} 🌷\n\nنتيجة اختبار الوعي الذاتي:\n🌱 *أنتِ في مرحلة الاكتشاف*\n\nمشاعرك أعمق مما تظنين — وهذا بالضبط وقت البداية الصحيحة 💛\n\nمنصة فنون عدن لديها مسار يومي مخصص لهذه المرحلة:\n👉 https://aden-art.lovable.app\n\nجرّبيها مجاناً — فيها 15 رصيد هدية عند التسجيل 🌷`
-  },
-  growing: {
-    badge: 'في طور النمو',
-    badgeClass: 'badge-growing',
-    emoji: '🌸',
-    title: 'أنتِ في طور النمو الواعي',
-    scoreLabel: (s) => `${s} من 20 — وعي متوسط إلى متقدم`,
-    desc: `عندك قاعدة جيدة من الوعي الذاتي. تفهمين مشاعرك لكن أحياناً يصعب التعبيي عنها أو التعامل معها بالطريقة المثلى. أنتِ في المرحلة التي تنتظر أدوات تُسرّع نموها.`,
-    traits: [
-      { icon: '💭', label: 'الوعي بالمشاعر', value: 'جيد' },
-      { icon: '🛡', label: 'الحدود الشخصية', value: 'قيد التطوير' },
-      { icon: '🎯', label: 'فهم المحفّزات', value: 'جزئي' },
-      { icon: '🚀', label: 'إمكانية القفزة', value: 'عالية جداً' },
-    ],
-    ctaTitle: 'أنتِ على بُعد خطوة من مستوى مختلف',
-    ctaSub: 'أدوات فنون عدن الذكية ستأخذك من "أفهم نفسي أحياناً" إلى "أعيش بوعي دائم"',
-    whatsappMsg: (name) => `${name} 🌷\n\nنتيجة اختبار الوعي الذاتي:\n🌸 *أنتِ في طور امشاعرك*\n\nعندك قاعدة ممتازة — المطلوب الآن الأدوات الصحيحة لتسريع رحلتك 💛\n\nمنصة فنون عدن فيها أدوات ذكية مصممة لهذه المرحلة بالضبط:\n👉 https://aden-art.lovable.app\n\nوكود EDEN9 يعطيكِ خصماً عند الاشتراك 🌷`
-  },
-  aware: {
-    badge: 'وعي متقدم',
-    badgeClass: 'badge-aware',
-    emoji: '✨',
-    title: 'وعيكِ الذاتي متقدم',
-    scoreLabel: (s) => `${s} من 20 — مستوى متقدم`,
-    desc: `تفهمين مشاعرك وتعرفين محفّزاتك وتضعين حدوداً بوضوح. هذا وعي حقيقي تعبتِ عليه. التحدي الآن: كيف تستخدمين هذا الوعي في تحسين علاقاتك وقراراتك؟`,
-    traits: [
-      { icon: '💎', label: 'الوعي بالمشاعر', value: 'عالي' },
-      { icon: '🛡', label: 'الحدود الشخصية', value: 'واضحة' },
-      { icon: '🎯', label: 'فهم الذاڪ', value: 'متقدم' },
-      { icon: '🌟', label: 'التأثير في الآخرين', value: 'الخطوة التالية' },
-    ],
-    ctaTitle: 'أنتِ تستحقين أدوات بمستواكِ',
-    ctaSub: 'المدربة الذكية "عدن" وأدوات التحليل المتقدمة صُممت لمن وصل لمستواكِ',
-    whatsappMsg: (name) => `${name} 🌷\n\nنتيجة اختبار الوعي الذاتي:\n✨ *وعيكِ الذاتي متقدم*\n\nأنتِ من النساء اللواتي وصلن لمستوى حقيقي من الوعي — ونادرات 💛\n\nمنصة فنون عدن لديها أدوات بمستواكِ:\n👉 https://aden-art.lovable.app\n\nوكود EDEN9 متاح للاشتراك 🌷`
-  }
-};
-
-// ===== SUBMIT =====
-async function submitForm() {
-  const name = document.getElementById('nameInput').value.trim();
-  const wa = document.getElementById('waInput').value.trim();
-
-  if (!name) { document.getElementById('nameInput').focus(); return; }
-  if (!wa || wa.length < 9) { document.getElementById('waInput').focus(); return; }
-
-  userName = name;
-  show('sLoading');
-
-  totalScore = calcScore();
-  const level = getLevel(totalScore);
-  const src = new URLSearchParams(window.location.search).get('src') || 'direct';
-
-  // Save to Supabase
-  try {
-    await fetch(`${SUPABASE_URL}/rest/v1/quiz_leads`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'apikey': SUPABASE_ANON,
-        'Authorization': `Bearer ${SUPABASE_ANON}`,
-        'Prefer': 'return=minimal'
-      },
-      body: JSON.stringify({
-        name: name,
-        whatsapp: wa,
-        pattern: `وعي ذاتي — ${levels[level].badge}`,
-        pattern_key: 'AW_' + level.toUpperCase(),
-        book: 'منصة فنون عدن',
-        book_link: 'https://aden-art.lovable.app',
-        scores: JSON.stringify({ answers, total: totalScore, level, src })
-      })
-    });
-  } catch(e) { console.log('Supabase save error', e); }
-
-  // Send WhatsApp
-  try {
-    const waNum = wa.startsWith('+') ? wa : '+966' + wa.replace(/^0/, '');
-    await fetch('https://www.wasenderapi.com/api/send-message', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${WASENDER_KEY}`
-      },
-      body: JSON.stringify({ to: waNum, text: levels[level].whatsappMsg(name) })
-    });
-  } catch(e) { console.log('WhatsApp error', e); }
-
-  // Notify owner via Telegram
-  try {
-    const tgMsg = `🌷 ليد جديدة — اختبار الوعي الذاتي\n👤 ${name}\n📱 ${wa}\n📊 المستوى: ${levels[level].badge}\n🔢 النتيجة: ${totalScore}/20\n📡 المصدر: ${src}`;
-    await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT}&text=${encodeURIComponent(tgMsg)}`);
-  } catch(e) { console.log('Telegram error', e); }
-
-  // Show result after loading
-  setTimeout(() => {
-    buildResult(level);
-    show('sResult');
-  }, 1800);
-}
-
-// ===== BUILD RESULT =====
-function buildResult(level) {
-  const l = levels[level];
-  const scoreLabel = l.scoreLabel(totalScore);
-
-  const traitsHTML = l.traits.map(t => `
-    <div class="trait">
-      <div class="trait-icon">${t.icon}</div>
-      <div class="trait-label">${t.label}</div>
-      <div class="trait-value">${t.value}</div>
-    </div>
-  `).join('');
-
-  document.getElementById('sResult').innerHTML = `
-    <div class="result-header">
-      <span class="result-badge ${l.badgeClass}">${l.badge}</span>
-      <div class="result-emoji">${l.emoji}</div>
-      <div class="result-title">${l.title}</div>
-      <div class="result-score">${scoreLabel}</div>
-    </div>
-
-    <div style="padding: 0 20px 40px;">
-      <div class="result-desc">${l.desc}</div>
-
-      <div class="traits">${traitsHTML}</div>
-
-      <div class="cta-card">
-        <div class="cta-label">🌷 الخطوة التالية</div>
-        <div class="cta-title">${l.ctaTitle}</div>
-        <div class="cta-sub">${l.ctaSub}</div>
-        <div class="cta-features">
-          <div class="cta-feat">مسار يومي 14 يوم مخصص لوعيكِ</div>
-          <div class="cta-feat">أدوات AI: تحليل + ردود + تقييم الجاهزية</div>
-          <div class="cta-feat">مدربة ذكية "عدن" متاحة 24/7</div>
-          <div class="cta-feat">ضمان ذهبي 7 أيام — بدون مخاطرة</div>
-        </div>
-        <div class="promo-box">🎁 كود EDEN9 يعطيكِ خصماً على الاشتراك</div>
-        <a href="https://aden-art.lovable.app" class="btn-gold" target="_blank">ابدئي رحلتك في فنون عدن ✨</a>
-      </div>
-
-      <a href="https://aden-art.lovable.app" class="btn-outline" target="_blank">تعرّفي على المنصة أولاً</a>
-
-      <p class="privacy-note" style="margin-top:20px">
-        أُرسلت نتيجتك على واتساب 🌷<br>
-        <a href="https://adenismind-netizen.github.io/funoon-aden/quiz.html" style="color:var(--muted)">جرّبي اختبار أنماط التعلق أيضاً ←</a>
-      </p>
-    </div>
-  `;
-}
-</script>
-</body>
-</html>
+HO����	�͉�K�
+NB�K�L
+NB����OOOOH��ԑHOOOOB��[��[ۈ�[���ܙJ
+H�]\��ؚ�X���[Y\�[���\��K��YX�J
+K�HO�H
+��
+NB���[��[ۈ�]]�[
+��ܙJHY�
+��ܙHHJH�]\��	ؙY�[��\��Y�
+��ܙHHMJH�]\��	�ܛ��[����]\��	�]�\�I�B���ۜ�]�[�H�Y�[��\���Y�N�	�av,v+va6*H6)�a6)�`�*�-6)�`I���Y�P�\�Έ	ؘY�KX�Y�[��\���[[ښN�	�'�,I��]N�	�(�a�*�d6`vb�6*6+�)�b�*H6,v+va6*�`�����ܙSX�[�
+�HO�	��H6ava��8�%6av,v+va6*H6)�a6)�`�*�-6)�`X�\�Έ6av-6)�.v,v`�6(�.vav`�6avav)�6*�.6a�b�a�#6a6`�a�6+v*�bH6)�a6(�a�6a6aH6*�c�.v-�c�6)�a6(�+�b6)�*�6)�a6-v+vb�+v*H6a6`va�ava�)ˈ6a�,6)�6a6)�6b�.va�b�6-�.v`v)�b�8�%6b�.va�b�6)va�6,v+va6*�`�6)�a6+v`�b�`�b�*H6a6aH6*�*6+�(�6*6.v+ˈ6b6a�,6)�6a�b6)�a6b6`�*�6)�a6av*�)�a6b����Z]Έ�X�ێ�	�'�#I�X�[�	�)�a6b6.vb�6*6)�a6av-6)�.v,I��[YN�	�`vb�6*6+�)�b�)�*�a��K��X�ێ�	�'��I�X�[�	�)�a6+v+�b6+�6)�a6-6+�-vb�*I��[YN�	�*�+v*�)�+6*6a�)�(I�K��X�ێ�	�'�I�X�[�	�`va�aH6)�a6,6)�*���[YN�	�+6)�a�,�*H6a6a6a�avb	�K��X�ێ�	�'�/��X�[�	�)vav`�)�a�b�*H6)�a6*�.�b�b�,I��[YN�	�`�*6b�,v*H6+6+�)�b��K�K��U]N�	�`va�b6a�6.v+�a�6-vc�avdvav*�6a6`�6*�+v+�b�+�)�b����T�X��	�)�a6av,�)�,H6)�a6b�b6avb�M6b�b6aH6,�b�.v-�b�`�d6)�a6(�+�b6)�*�6)�a6*�b�6a6aH6*�+6+�b�a�)�6`vb�6(�b�6av`�)�a�6(�+�,I���]�\\�Έ
+�[YJHO�	ۘ[Y_H<'�-���a�*�b�+6*H6)�+�*�*6)�,H6)�a6b6.vb�6)�a6,6)�*�b���'�,H
+�(�a�*�d6`vb�6av,v+va6*H6)�`6`�*�*�-6)�`J���av-6)�.v,v`�6(�.vav`�6avav)�6*�.6a�b�a�8�%6b6a�,6)�6*6)�a6-�*6-�6b6`�*�6)�a6*6+�)�b�*H6)�a6-v+vb�+v*H<'����ava�-v*H6`va�b6a�6.v+�a�6a6+�b�a�)�6av,�)�,H6b�b6avb�6av+�-v-H6a6a�,6a�6)�av,vb�+va6*N��'�bH΋��Y[�X\��ݘX�K�\��+6,vdv*6b�a�)�6av+6)�a�)�b�8�%6`vb�a�)�MH6,v-vb�+�6a�+�b�*H6.va�+�6)�`�,�+6b�a<'�-��K�ܛ��[�Έ�Y�N�	�`vb�6-�b6,H6)�a6a�ava����Y�P�\�Έ	ؘY�KYܛ��[����[[ښN�	�'�.	��]N�	�(�a�*�d6`vb�6-�b6,H6)�ava�aH6)�a6b6)�.vb�����ܙSX�[�
+�HO�	��H6ava��8�%6b6.vb�6av*�b6,�-�	[6a6b�a6bH6av*�`�+�aX�\�Έ6.va�+�`�6`�)�.v+�*H6+6b�+�*H6ava�6)�a6b6.vb�6)�a6,6)�*�b��6*�`va�avb�a�6av-6)�.v,v`�6a6`�a�6(�+vbv)�a�)�b�6b�-v.v*6)�a6*�.v*6b�,H6.va�a�)�6(�b6)�a6*�.v)�ava6av.va�)�6*6)�a6-�,vb�`�*H6)�a6av*�a6bK�6(�a�*�d6`vb�6)�a6av,v+va6*H6)�a6*�b�6*�a�*�.6,H6(�+�b6)�*�6*�c�,�,vdv.H6a�avb6a�)˘��Z]Έ�X�ێ�	�'�I�X�[�	�)�a6b6.vb�6*6)�a6av-6)�.v,I��[YN�	�+6b�+��K��X�ێ�	�'��I�X�[�	�)�a6+v+�b6+�6)�a6-6+�-vb�*I��[YN�	�`�`��)�a6*�7�b6b�,I�K��X�ێ�	�'���KX�[�	�`va�aH6)�a6av+v`vdv,�)�*���[YN�	�+6,�)�b��K��X�ێ�	�'�	�X�[�	�)vav`�)�a�b�*H6)�a6`�`v,�*I��[YN�	�.v)�a6b�*H�+6+�)�b��K�K��U]N�	�(�a�*�d6.va6bH6*6c�.v+�6+�-�b6*H6ava�6av,�*�b6bH6av+�*�a6`I���T�X��	�(�+�b6)�*�6`va�b6a�6.v+�a�6)�a6,6`�b�*H6,�*�(�+�,6`�6ava��(�`va�aH6a�`v,�b�6(�+vb�)�a�)�bȈ6)vavbH�(�.vb�-6*6b6.vb�6+�)�)�aH����]�\\�Έ
+�[YJHO�	ۘ[Y_H<'�-���a�*�b�+6*H6)�+�*�*6)�,H6)�a6b6.vb�6)�a6,6)�*�b���'�.
+�(�a�*�d6`vb�6-�b6,H6)�ava�aH6)�a6b6)�.vb��%���틝�m���2
+�-�}������
+�]�]���}�-��(	B
+�}�M�]�}�M����
+�}�M�-�b
+�}�M�=�����}��
+�}�M�]�ݘ��݊�
+�M���=�����
+��ݘM���2	�)�����]�m�]��
+��m���b
+�����b
+����}�r
+�=�����}��
+�
+�=����
+�]�]�]�]��
+�M�}�
+�r
+�}�]����ݘM��
+���}�M�m���s���	���GG3���FV��'B���f&�R����혍�=����TDT�
+�����}���=�
+��]�]�}��
+���m��
+�}�M�}�M����}�2	��v ����v&S���&FvS�}������
+�]���-���Rr��&FvT6�73�v&FvR�v&Rr��V�����~)ʂr��F�F�S�}�������=�
+�}�M�
+�}����
+�]���-���Rr��66�&T�&Vâ�2���G�7�
+�]�b#(	B
+�]�=������
+�]���-���V��FW63�
+����}�]���b
+�]�M�}����2
+�����������b
+�]�ݘ��-�}���2
+�����m�����b
+�݊������}��
+�����������
+�}�
+�r
+������
+�ݘ-���-��
+���������
+���M���r�
+�}�M���݊���
+�}�M�-�c�
+�=���
+���=������]���b
+�}�
+�r
+�}�M������
+���
+���݋=���b
+���M�}�-�}���2
+���-��}��}���=����G&�G3�����6��	�(�r��&Vâ}�}�M������
+���}�M�]�M�}���r�f�VS�}���}�M��r�����6��	��r��&Vâ}�}�M�݊�����
+�}�M�M��]����r�f�VS�}���}�m�݊�r�����6��	���r��&Vâ}��}�R
+�}�M�
+�}��r�f�VS�}�]���-���Rr�����6��	���r��&Vâ}�}�M���=�����
+���
+�}�M�-�����br�f�VS�}�}�M��}����
+�}�M���}�M����r������7FF�F�S�}�=�m���
+���=���ݘ-���b
+�=�����}j�
+���]�=�����}�=�r��7F7V#�}�}�M�]�������
+�}�M�
+�=����-�����b"
+���=�����}��
+�}�M���ݘM���B
+�}�M�]���-���]��
+�]���]�]��
+�M�]�b
+���]�B
+�M�]�=�����}�=�r��v�G6�6s����R���G���W�	��u����m�����͊�
+�}�튭���}�
+�}�M������
+�}�M�
+�}�������)ʂ��������=�
+�}�M�
+�}����
+�]���-���R�����=�m���
+�]�b
+�}�M�m�=�}�
+�}�M�M���}����
+���]�M�b
+�M�]�=������
+�ݘ-���-��
+�]�b
+�}�M������(	B
+���m�}����}��	�)�����]�m�]��
+��m���b
+�����b
+�M�����}�r
+�=�����}��
+���]�=�����}�=����	���GG3���FV��'B���f&�R����혍�=����TDT�
+�]���}��
+�M�M�}�M����}�2	��v �ЧӰ���������5T$ԕB����Ц7��2gV�7F���7V&֗Df�&҂���6��7B��R�F�7V�V�B�vWDV�V�V�D'��B�v��T��WBr��f�VR�G&�҂���6��7Bv�F�7V�V�B�vWDV�V�V�D'��B�wv��WBr��f�VR�G&�҂�����b���R��F�7V�V�B�vWDV�V�V�D'��B�v��T��WBr��f�7W2���&WGW&�Т�b�v��v��V�wF�����F�7V�V�B�vWDV�V�V�D'��B�wv��WBr��f�7W2���&WGW&�Р�W6W$��R���S��6��r�w4��F��rr����F�F�66�&R�6�566�&R����6��7B�WfV��vWD�WfVF�F�66�&R���6��7B7&2��WrU$�6V&6�&�2�v��F�r���6F����6V&6���vWB�w7&2r���vF�&V7Bs�����6fRF�7W&6P�G'���v�BfWF6��G�5U$4U�U$���&W7B�c�V����VG3����6��fƖ7C�v�G6����WF��C�u�5Br���VFW'3���t6��FV�B�G�Rs�vƖ6F�����6��r��v��W�s�5U$4U������tWF��&��F���s�&V&W"G�5U$4U�������u&VfW"s�w&WGW&��֖����&W6��WF�����W&vR�GWƖ6FW2p����&�G���4���7G&��v�g������S���R��v�G6�v��GFW&�
+������
+�
+�}����(	BG��WfV�5��WfV���&FvW���GFW&���W��tu�r��WfV��F�WW$66R����&����}�]�m�]��
+��m���b
+�����br��&����Ɩ波v�GG3���FV��'B���f&�R�r��66�&W3��4���7G&��v�g����7vW'2�F�FâF�F�66�&R��WfV��7&2Ґ�Ґ�ғ���6F6��R��6��6��R���r�u7W&6R6fRW'&�"r�R��Р���6V�Bv�G4 �G'���6��7Bv�V��vR�7F'G5v�F��r�r��v�r��cbr�v�&W�6R�����rr���v�BfWF6��v�GG3���wwr�v6V�FW&��6�����6V�B��W76vRr����WF��C�u�5Br���VFW'3���t6��FV�B�G�Rs�vƖ6F�����6��r��tWF��&��F���s�&V&W"G�t4T�DU%��U�� ����&�G���4���7G&��v�g���F�v�V��FW�C��WfV�5��WfV���v�G6�6r���R�Ґ�ғ���6F6��R��6��6��R���r�uv�G4W'&�"r�R��Р�����F�g��v�W"f�FV�Vw&ТG'���6��7BFt�6r�	��r
+�M����
+�͊�������(	B
+�}�튭���}�
+�}�M������
+�}�M�
+�}������	�BG���W���	�;G�v���	�8�
+�}�M�]�=�������G��WfV�5��WfV���&FvW���	�J"
+�}�M�m�����͊��G�F�F�66�&W��#��	�:
+�}�M�]�]����G�7&7���v�BfWF6���GG3�����FV�Vw&���&r�&�BG�DT�Tu$��D��T���6V�D�W76vS�6�E��C�G�DT�Tu$��4�G�gFW�C�G�V�6�FUU$�6����V�B�Ft�6r������6F6��R��6��6��R���r�uFV�Vw&�W'&�"r�R��Р���6��r&W7V�BgFW"��F��p�6WEF��V�WB�������'V��E&W7V�B��WfV��6��r�w5&W7V�Br���������Р��������%T��B$U5T�B����ЦgV�7F���'V��E&W7V�B��WfV��6��7B���WfV�5��WfV�Ӱ�6��7B66�&T�&V����66�&T�&VF�F�66�&R����6��7BG&�G4�D�����G&�G2���B�� ��F�b6�73�'G&�B#��F�b6�73�'G&�B֖6��#�G�B�6�����F�c��F�b6�73�'G&�B��&V�#�G�B��&V����F�c��F�b6�73�'G&�B�f�VR#�G�B�f�VW���F�c���F�c������rr����F�7V�V�B�vWDV�V�V�D'��B�w5&W7V�Br����W$�D��� ��F�b6�73�'&W7V�BֆVFW"#��7�6�73�'&W7V�B�&FvRG���&FvT6�77�#�G���&FvW���7���F�b6�73�'&W7V�B�V����#�G���V�������F�c��F�b6�73�'&W7V�B�F�F�R#�G���F�F�W���F�c��F�b6�73�'&W7V�B�66�&R#�G�66�&T�&V����F�c���F�cࠢ�F�b7G��S�'FF��s�#�C��#��F�b6�73�'&W7V�B�FW62#�G���FW67���F�cࠢ�F�b6�73�'G&�G2#�G�G&�G4�D�����F�cࠢ�F�b6�73�&7F�6&B#��F�b6�73�&7F��&V�#�	��r
+�}�M��}����
+�}�M���}�M������F�c��F�b6�73�&7F�F�F�R#�G���7FF�F�W���F�c��F�b6�73�&7F�7V"#�G���7F7V'���F�c��F�b6�73�&7F�fVGW&W2#��F�b6�73�&7F�fVB#�]�=�}�
+�����]��B
+�����R
+�]��]�R
+�M�������=���F�c��F�b6�73�&7F�fVB#�=�����}����
+���ݘM���B�
+��������
+���-�����R
+�}�M�͊}�}�-������F�c��F�b6�73�&7F�fVB#�]�������
+�
+�=����-�����b"
+�]���}�݊�#B�s��F�c��F�b6�73�&7F�fVB#�m�]�}�b
+�
+�}����r
+�=���}�R(	B
+�������b
+�]��}�}�����F�c���F�c��F�b6�73�'&����&��#�	��
+�=����TDT�
+�����}���=�
+��]�]�}��
+���M��
+�}�M�}�M����}�3��F�c���&Vc�&�GG3���FV��'B���f&�R�"6�73�&'F��v��B"F&vWC�%�&��#�}�����m��
+��ݘM���2
+���
+��m���b
+�����b)ʃ�����F�cࠢ��&Vc�&�GG3���FV��'B���f&�R�"6�73�&'F���WFƖ�R"F&vWC�%�&��#튭�������
+���]��
+�}�M�]�m�]��
+�=���M�}����ࠢ�6�73�'&�f7����FR"7G��S�&�&v���F��#�#�
+�=����=�]��
+�m�����͊��2
+���M��
+���}���=�}��	��s�'#���&Vc�&�GG3���FV�6֖�B��WF��V��v�F�V"���gV�����FV��V���F��"7G��S�&6���#�f"����WFVB�#�͋�����
+�}�튭���}�
+�=�m�]�}�r
+�}�M�����M�"
+�=���m�}��(i��������F�c���У��67&�C���&�G�����F���
