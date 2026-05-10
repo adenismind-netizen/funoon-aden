@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ÙÙÙÙ Ø¹Ø¯Ù â ÙÙØ­Ø© Ø§ÙÙØªØ§Ø¨Ø¹Ø©</title>
+<title>فنون عدن — لوحة المتابعة</title>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js" integrity="sha384-iU8HYtnGQ8Cy4zl7gbNMOhsDTTKX02BTXptVP/vqAWIaTfM7isw76iyZCsjL2eVi" crossorigin="anonymous"></script>
 <style>
@@ -15,9 +15,9 @@ body{font-family:'Tajawal',Arial,sans-serif;background:var(--cream);color:var(--
 .brand{font-size:17px;font-weight:800;}
 .brand span{color:var(--terra);}
 .header-right{display:flex;align-items:center;gap:14px;}
-.live-pill{display:flex;align-items:center;gap:6px;background:#EDFAF2;border-radius99px;padding:5px 12px;font-size:12px;color:var(--green);font-weight:600;}
+.live-pill{display:flex;align-items:center;gap:6px;background:#EDFAF2;border-radius:99px;padding:5px 12px;font-size:12px;color:var(--green);font-weight:600;}
 .live-dot{width:7px;height:7px;background:var(--green);border-radius:50%;animation:pulse 2s infinite;}
-@keyframes pulse{0%, 100%{opacity:1;}50%{opacity:0.3;}}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
 .update-meta{font-size:11px;color:var(--muted);text-align:center;}
 .refresh-btn{background:var(--terra);color:white;border:none;border-radius:10px;padding:8px 18px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;}
 .refresh-btn:disabled{background:#C4B49A;cursor:not-allowed;}
@@ -77,19 +77,19 @@ tr:last-child td{border-bottom:none;}
 <body>
 
 <div class="header">
-  <div class="brand">ÙÙÙÙ <span>Ø¹Ø¯Ù</span> ð· â ÙÙØ­Ø© Ø§ÙÙØªØ§Ø¨Ø¹Ø©</div>
+  <div class="brand">فنون <span>عدن</span> 🌷 — لوحة المتابعة</div>
   <div class="header-right">
-    <div class="live-pill"><span class="live-dot"></span>ÙØ¨Ø§Ø´Ø±</div>
+    <div class="live-pill"><span class="live-dot"></span>مباشر</div>
     <div class="update-meta">
-      <div id="lastUpdate">Ø¬Ø§Ø±Ù Ø§ÙØªØ­ÙÙÙ...</div>
+      <div id="lastUpdate">جاري التحميل...</div>
       <div id="countdown" style="color:var(--muted);font-size:11px;"></div>
     </div>
-    <button class="refresh-btn" id="refreshBtn" onclick="loadAll(true)">ð ØªØ­Ø¯ÙØ«</button>
+    <button class="refresh-btn" id="refreshBtn" onclick="loadAll(true)">🔄 تحديث</button>
   </div>
 </div>
 
 <div class="container">
-  <div id="root"><div class="loading"><span class="spinner"></span> Ø¬Ø§Ø±Ù Ø¬ÙØ¨ Ø§ÙØ¨ÙØ§ÙØ§Øª ÙÙ Supabase...</div></div>
+  <div id="root"><div class="loading"><span class="spinner"></span> جاري جلب البيانات من Supabase...</div></div>
 </div>
 
 <script>
@@ -98,7 +98,7 @@ let chartLeads = null, chartPat = null, countdownInterval = null;
 const INTERVAL = 300;
 let secLeft = INTERVAL;
 
-const PAT_LABEL = {A:'ÙÙÙ',B:'ØªÙØ§Ø¯Ù',C:'ÙØ¶Ø·Ø±Ø¨',D:'Ø¢ÙÙ'};
+const PAT_LABEL = {A:'قلق',B:'تفادي',C:'مضطرب',D:'آمن'};
 const PAT_COLOR = {A:'#C4714A',B:'#C8973A',C:'#5A8A6A',D:'#4A6CB3'};
 const PAT_CLASS = {A:'b-a',B:'b-b',C:'b-c',D:'b-d'};
 
@@ -106,7 +106,7 @@ function pct(a,b){return b>0?Math.round(a/b*100):0;}
 
 async function loadAll(manual=false){
   const btn=document.getElementById('refreshBtn');
-  if(btn){btn.disabled=true;btn.textContent='â³';}
+  if(btn){btn.disabled=true;btn.textContent='⏳';}
   try {
     const r=await fetch(API);
     if(!r.ok) throw new Error('HTTP '+r.status);
@@ -114,14 +114,14 @@ async function loadAll(manual=false){
     render(d);
     const n=new Date();
     document.getElementById('lastUpdate').textContent=
-      'Ø¢Ø®Ø± ØªØ­Ø¯ÙØ«: '+String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0');
+      'آخر تحديث: '+String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0');
     startCountdown();
   } catch(e){
     const root=document.getElementById('root');
     if(root.querySelector('.loading'))
-      root.innerHTML='<div class="error">â ï¸ ØªØ¹Ø°ÙØ± Ø¬ÙØ¨ Ø§ÙØ¨ÙØ§ÙØ§Øª â '+e.message+'<br><br>ØªØ­ÙÙÙÙ ÙÙ Ø§ØªØµØ§Ù Ø§ÙØ¥ÙØªØ±ÙØª Ø«Ù Ø§Ø¶ØºØ·Ù ØªØ­Ø¯ÙØ«.</div>';
+      root.innerHTML='<div class="error">⚠️ تعذّر جلب البيانات — '+e.message+'<br><br>تحقّقي من اتصال الإنترنت ثم اضغطي تحديث.</div>';
   }
-  if(btn){btn.disabled=false;btn.textContent='ð ØªØ­Ø¯ÙØ«';}
+  if(btn){btn.disabled=false;btn.textContent='🔄 تحديث';}
 }
 
 function startCountdown(){
@@ -130,7 +130,7 @@ function startCountdown(){
   countdownInterval=setInterval(()=>{
     secLeft--;
     const m=Math.floor(secLeft/60),s=secLeft%60;
-    document.getElementById('countdown').textContent='ØªØ­Ø¯ÙØ« Ø®ÙØ§Ù '+m+':'+String(s).padStart(2,'0');
+    document.getElementById('countdown').textContent='تحديث خلال '+m+':'+String(s).padStart(2,'0');
     if(secLeft<=0) loadAll(false);
   },1000);
 }
@@ -140,40 +140,40 @@ function render(d){
   const metricsHTML=`
   <div class="metrics-grid">
     <div class="metric-card">
-      <div class="metric-icon">ð¥</div>
-      <div class="metric-label">Ø¥Ø¬ÙØ§ÙÙ Ø§ÙÙÙØ¯Ø²</div>
+      <div class="metric-icon">👥</div>
+      <div class="metric-label">إجمالي الليدز</div>
       <div class="metric-value">${d.total}</div>
-      <div class="metric-sub">+${d.thisWeek} ÙØ°Ø§ Ø§ÙØ£Ø³Ø¨ÙØ¹</div>
+      <div class="metric-sub">+${d.thisWeek} هذا الأسبوع</div>
     </div>
     <div class="metric-card">
-      <div class="metric-icon">ð±</div>
-      <div class="metric-label">Ø§ÙÙÙÙ</div>
+      <div class="metric-icon">🌱</div>
+      <div class="metric-label">اليوم</div>
       <div class="metric-value c-gold">+${d.today}</div>
-      <div class="metric-sub">ÙÙØ¯ Ø¬Ø¯ÙØ¯Ø©</div>
+      <div class="metric-sub">ليد جديدة</div>
     </div>
     <div class="metric-card">
-      <div class="metric-icon">â</div>
-      <div class="metric-label">Ø¨ÙØ§Ø³Øª Ø§ÙÙÙØµØ© Ø£ÙØ±Ø³Ù</div>
+      <div class="metric-icon">✅</div>
+      <div class="metric-label">بلاست المنصة أُرسل</div>
       <div class="metric-value c-green">${d.blastSent}</div>
-      <div class="metric-sub">${pct(d.blastSent,d.total)}% ÙÙ Ø§ÙØ¥Ø¬ÙØ§ÙÙ</div>
+      <div class="metric-sub">${pct(d.blastSent,d.total)}% من الإجمالي</div>
     </div>
   </div>`;
 
   // Progress
   const progressHTML=`
   <div class="card">
-    <div class="card-title">ð¤ ØªÙØ¯Ù Ø¨ÙØ§Ø³Øª Ø§ÙÙÙØµØ© â Ø±Ø³Ø§Ø¦Ù Ø¯Ø¹ÙØ© aden-art.lovable.app</div>
+    <div class="card-title">📤 تقدم بلاست المنصة — رسائل دعوة aden-art.lovable.app</div>
     <div class="progress-row">
-      <div class="p-label">Ø£ÙØ±Ø³ÙØª â</div>
-      <div class="p-nums c-green">${d.blastSent} ÙÙ ${d.total} (${pct(d.blastSent,d.total)}%)</div>
+      <div class="p-label">أُرسلت ✅</div>
+      <div class="p-nums c-green">${d.blastSent} من ${d.total} (${pct(d.blastSent,d.total)}%)</div>
     </div>
     <div class="bar-wrap"><div class="bar-fill bg-green" style="width:${pct(d.blastSent,d.total)}%"></div></div>
     <div class="progress-row">
-      <div class="p-label">ÙØªØ¨ÙÙØ© â³</div>
-      <div class="p-nums c-gold">${d.blastPending} ÙÙØ¯</div>
+      <div class="p-label">متبقية ⏳</div>
+      <div class="p-nums c-gold">${d.blastPending} ليد</div>
     </div>
     <div class="bar-wrap"><div class="bar-fill bg-gold" style="width:${pct(d.blastPending,d.total)}%"></div></div>
-    <div class="progress-note">âï¸ platform-blast ØªØ¹ÙÙ ØªÙÙØ§Ø¦ÙØ§Ù ÙÙ 10 Ø¯ÙØ§Ø¦Ù â 7 Ø±Ø³Ø§Ø¦Ù/Ø¯ÙØ±Ø© â ÙØ­ÙÙØ© ÙÙ Ø§ÙØªÙØ±Ø§Ø±</div>
+    <div class="progress-note">⚙️ platform-blast تعمل تلقائياً كل 10 دقائق — 7 رسائل/دورة — محمية من التكرار</div>
   </div>`;
 
   // Sources
@@ -199,11 +199,11 @@ function render(d){
     const dt=new Date(l.date);
     const ds=`${dt.getDate()}/${dt.getMonth()+1} ${String(dt.getHours()).padStart(2,'0')}:${String(dt.getMinutes()).padStart(2,'0')}`;
     const blastBadge=l.blast===true
-      ?'<span class="badge b-yes">Ø£ÙØ±Ø³Ù</span>'
+      ?'<span class="badge b-yes">أُرسل</span>'
       :l.blast===false
-        ?'<span class="badge b-no">ÙØ­Ø¬ÙØ²</span>'
-        :'<span class="badge b-pend">ÙØ¹ÙÙ</span>';
-    const d0=l.day0?'<span class="badge b-yes">â</span>':'<span class="badge b-no">â</span>';
+        ?'<span class="badge b-no">محجوز</span>'
+        :'<span class="badge b-pend">معلق</span>';
+    const d0=l.day0?'<span class="badge b-yes">✓</span>':'<span class="badge b-no">—</span>';
     return`<tr>
       <td>${l.name}</td>
       <td style="direction:ltr;text-align:right;font-size:12px;">${l.wa}</td>
@@ -220,28 +220,28 @@ function render(d){
     ${progressHTML}
     <div class="charts-grid">
       <div class="card" style="margin:0;">
-        <div class="card-title">ð Ø§ÙÙÙØ¯Ø² Ø¢Ø®Ø± 14 ÙÙÙ</div>
+        <div class="card-title">📈 الليدز آخر 14 يوم</div>
         <div class="chart-wrap"><canvas id="cLeads"></canvas></div>
       </div>
       <div class="card" style="margin:0;">
-        <div class="card-title">ð§  ØªÙØ²ÙØ¹ Ø§ÙØ£ÙÙØ§Ø·</div>
+        <div class="card-title">🧠 توزيع الأنماط</div>
         <div class="chart-wrap"><canvas id="cPat"></canvas></div>
       </div>
     </div>
     <div class="two-col">
       <div class="card" style="margin:0;">
-        <div class="card-title">ð Ø§ÙÙØµØ§Ø¯Ø±</div>
+        <div class="card-title">🌐 المصادر</div>
         <div class="bar-list">${sourcesHTML}</div>
       </div>
       <div class="card" style="margin:0;">
-        <div class="card-title">ð Ø§ÙØ£ÙÙØ§Ø·</div>
+        <div class="card-title">📊 الأنماط</div>
         <div class="bar-list">${patHTML}</div>
       </div>
     </div>
     <div class="card">
-      <div class="card-title">ð Ø¢Ø®Ø± 20 ÙÙØ¯</div>
+      <div class="card-title">🕐 آخر 20 ليد</div>
       <table>
-        <thead><tr><th>Ø§ÙØ§Ø³Ù</th><th>Ø§ÙÙØ§ØªØ³Ø§Ø¨</th><th>Ø§ÙÙÙØ·</th><th>Ø§ÙÙØµØ¯Ø±</th><th>ÙÙÙ 0</th><th>Ø¨ÙØ§Ø³Øª</th><th>Ø§ÙØªØ§Ø±ÙØ®</th></tr></thead>
+        <thead><tr><th>الاسم</th><th>الواتساب</th><th>النمط</th><th>المصدر</th><th>يوم 0</th><th>بلاست</th><th>التاريخ</th></tr></thead>
         <tbody>${tableRows}</tbody>
       </table>
     </div>`;
@@ -264,7 +264,7 @@ function render(d){
   chartPat=new Chart(document.getElementById('cPat'),{
     type:'doughnut',
     data:{
-      labels:['ÙÙÙ (A)','ØªÙØ§Ø¯Ù (B)','ÙØ¶Ø·Ø±Ø¨ (C)','Ø¢ÙÙ (D)'],
+      labels:['قلق (A)','تفادي (B)','مضطرب (C)','آمن (D)'],
       datasets:[{data:[d.patterns.A,d.patterns.B,d.patterns.C,d.patterns.D],
         backgroundColor:['#C4714A','#C8973A','#5A8A6A','#4A6CB3'],borderWidth:0,hoverOffset:6}]
     },
