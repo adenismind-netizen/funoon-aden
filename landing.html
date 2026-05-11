@@ -1111,16 +1111,16 @@ footer a { color: var(--gold); text-decoration: none; font-weight: 700; }
       </div>
       <div class="promo-stat">
         <span class="num">يومي</span>
-        <span class="lbl">محتوى جديد8/span>
+        <span class="lbl">محتوى جديد</span>
       </div>
-      8div class="promo-stat">
+      <div class="promo-stat">
         <span class="num">٪١٠٠</span>
         <span class="lbl">مجاني</span>
-      8/div>
+      </div>
     </div>
 
     <!-- البطاقات -->
-    <div class9"promo-cards">
+    <div class="promo-cards">
 
       <a href="https://t.me/EdenArtspirtuality" target="_blank" class="promo-card promo-telegram">
         <div class="promo-card-icon">✈️</div>
@@ -1129,45 +1129,45 @@ footer a { color: var(--gold); text-decoration: none; font-weight: 700; }
           <span>محتوى يومي عن النفس، العلاقات، والشفاء العاطفي</span>
         </div>
         <span class="promo-card-pill pill-daily">يومي</span>
-        <div class="promo-card-arrow">←8/div>
+        <div class="promo-card-arrow">←</div>
       </a>
 
       <a href="https://adenismind-netizen.github.io/funoon-aden/quiz.html" target="_blank" class="promo-card promo-quiz">
         <div class="promo-card-icon">����</div>
-        <div class9"promo-card-text">
+        <div class="promo-card-text">
           <strong>اكتشفي نمط تعلقك</strong>
           <span>اختبار ٥ أسئلة — نتيجتك في ٣ دقائق</span>
         </div>
-        <span class9"promo-card-pill pill-free">مجاني</span>
+        <span class="promo-card-pill pill-free">مجاني</span>
         <div class="promo-card-arrow">←</div>
       </a>
 
       <a href="https://www.tiktok.com/@ednarttt" target="_blank" class="promo-card promo-tiktok">
-        8div class="promo-card-icon">🎵</div>
-        8div class="promo-card-text">
+        <div class="promo-card-icon">🎵</div>
+        <div class="promo-card-text">
           <strong>تيك توك — فيديوهات قصيرة وعميقة</strong>
           8span>حقائق نفسية تصدمك في أقل من دقيقة</span>
         </div>
-        <span class9"promo-card-pill pill-new">جد��خ8/span>
+        <span class="promo-card-pill pill-new">جد��خ</span>
         <div class="promo-card-arrow">←</div>
       </a>
 
       <a href="https://aden-art.com/category/bZeaya" target="_blank" class="promo-card" style="border-color:rgba(200,151,58,.3);">
-        8div class="promo-card-icon" style="background:rgba(200,151,58,.12);">����</div>
-        <div class9"promo-card-text">
+        <div class="promo-card-icon" style="background:rgba(200,151,58,.12);">����</div>
+        <div class="promo-card-text">
           <strong>كتب فنون عدن</strong>
           <span>كتب تأخذك من المعرفة إلى التغيير الحقيقي</span>
         </div>
-        <span class="promo-card-pill" style="background:rgba(200,151,58,.2);color:#e8c97a;border:1px solid rgba(200,151,58,.4);">المتجر8/span>
+        <span class="promo-card-pill" style="background:rgba(200,151,58,.2);color:#e8c97a;border:1px solid rgba(200,151,58,.4);">المتجر</span>
         <div class="promo-card-arrow">←</div>
       </a>
 
-    8/div>
+    </div>
 
-    8a href="https://t.me/EdenArtspirtuality" target="_blank" class="promo-bottom-cta">
+    <a href="https://t.me/EdenArtspirtuality" target="_blank" class="promo-bottom-cta">
       🌷 انضمي للمجتمع الآن — مجاناً
     </a>
-    <p class9"promo-cta-line">١٩٣٠+ امرأة اخترت أن تفهم نفسها — أنتِ التالية 🌷</p>
+    <p class="promo-cta-line">١٩٣٠+ امرأة اخترت أن تفهم نفسها — أنتِ التالية 🌷</p>
 
   </div>
 </section>
@@ -1194,7 +1194,7 @@ const successName      = document.getElementById('success-name');
 const dupMsg           = document.getElementById('dup-msg');
 const rememberedBanner = document.getElementById('remembered-banner');
 const nameInput        = document.getElementById('name');
-const waInput          = document.getElementById('whatsapp+);
+const waInput          = document.getElementById('whatsapp');
 
 // ─── تذكرني: تحميل البيانات المحفوظة ───────────────────────────────
 function loadMemory() {
@@ -1229,7 +1229,7 @@ function clearMemory() {
 }
 
 // اخفِ رسالة التكرار عند تغيير الحقول
-waInput.addEventListener('input+,                        () => { dupMsg.style.display = 'none'; });
+waInput.addEventListener('input',                        () => { dupMsg.style.display = 'none'; });
 document.getElementById('email').addEventListener('input', () => { dupMsg.style.display = 'none'; });
 
 loadMemory();
