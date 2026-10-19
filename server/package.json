@@ -1,0 +1,20 @@
+{
+  "name": "aden-quiz-api",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Secure server-side API for the فنون عدن attachment-pattern quiz funnel. Zero secrets in client code.",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node --env-file=.env server.js",
+    "test": "node --test test/*.test.js",
+    "check:providers": "node --env-file=.env scripts/check-providers.js",
+    "outbox:status": "node --env-file=.env scripts/outbox-status.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "express": "^4.22.2"
+  }
+}
