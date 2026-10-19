@@ -17,7 +17,9 @@ function makeWorker(store, providers, { onEvent = () => {} } = {}) {
         const state = ['failed', 'queued', 'unknown'].includes(error.state) ? error.state : 'unknown';
         outcome = { state, code: /^[a-z0-9_]{1,80}$/.test(error.code || '') ? error.code : 'provider_outcome_unknown', retryMs: error.retryMs };
         if (state === 'queued') {
-          if (job.attempts >= 4) outcome = { state: 'failed', code: 'rate_retry_exhausted' };
+          const safeSaveDns = kind === 'save' && error.code === 'dns_unavailable';
+          const maxAttempts = safeSaveDns ? 24 : 4;
+          if (job.attempts >= maxAttempts) outcome = { state: 'failed', code: safeSaveDns ? 'dns_retry_exhausted' : 'rate_retry_exhausted' };
           else outcome.retryMs = Math.max(1000, Math.min(Number(error.retryMs) || 60000, 3600000));
         }
       }

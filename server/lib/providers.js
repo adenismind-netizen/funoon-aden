@@ -15,11 +15,18 @@ function makeProviders(env = process.env, fetchImpl = fetch) {
     telegram: Boolean(env.TG_TOKEN && env.TG_CHAT),
     whatsapp: Boolean(env.WASENDER_API_KEY)
   };
-  async function request(url, options, { json = true } = {}) {
+  async function request(url, options, { json = true, retryDns = false } = {}) {
     let response;
     try {
       response = await fetchImpl(url, { ...options, redirect: 'error', signal: AbortSignal.timeout(timeoutMs) });
-    } catch (_) { throw new ProviderError('network_outcome_unknown'); }
+    } catch (error) {
+      // A failed DNS lookup never established a connection. This exception is
+      // intentionally limited to lead storage; messaging remains conservative.
+      if (retryDns && ['ENOTFOUND', 'EAI_AGAIN'].includes(error?.cause?.code)) {
+        throw new ProviderError('dns_unavailable', 'queued', 300000);
+      }
+      throw new ProviderError('network_outcome_unknown');
+    }
     // A 429 is an explicit rejection and is the only automatic resend condition.
     if (response.status === 429) {
       const seconds = Number(response.headers.get('retry-after'));
@@ -61,7 +68,7 @@ function makeProviders(env = process.env, fetchImpl = fetch) {
       await request(`${url.origin}/rest/v1/quiz_leads`, {
         method: 'POST', headers: { apikey: key, Authorization: `Bearer ${key}`, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
         body: JSON.stringify(submission.lead)
-      }, { json: false });
+      }, { json: false, retryDns: true });
       return { state: 'accepted' };
     },
     async telegram(submission) {

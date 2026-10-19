@@ -186,3 +186,41 @@ test('unconfigured service returns genuine 503 without accepting a submission', 
   assert.equal((await api.post(body())).status, 503);
   assert.equal(api.store.db.prepare('SELECT count(*) AS n FROM quiz_submissions_v2').get().n, 0);
 });
+
+test('only known pre-connection DNS failures retry Supabase; messaging DNS and ambiguous timeouts remain unknown', async () => {
+  const submission = validateSubmission(body(), quiz);
+  for (const code of ['ENOTFOUND', 'EAI_AGAIN']) {
+    const fetchImpl = async () => { throw new TypeError('fetch failed', { cause: { code } }); };
+    const { providers } = makeProviders(env, fetchImpl);
+    await assert.rejects(providers.save(submission), error => error.code === 'dns_unavailable' && error.state === 'queued' && error.retryMs === 300000);
+    for (const kind of ['telegram', 'whatsapp']) {
+      await assert.rejects(providers[kind](submission), error => error.code === 'network_outcome_unknown' && error.state === 'unknown');
+    }
+  }
+  for (const code of ['ETIMEDOUT', 'UND_ERR_CONNECT_TIMEOUT', 'ECONNRESET']) {
+    const fetchImpl = async () => { throw new TypeError('fetch failed', { cause: { code } }); };
+    await assert.rejects(makeProviders(env, fetchImpl).providers.save(submission), error => error.code === 'network_outcome_unknown' && error.state === 'unknown');
+  }
+  await assert.rejects(makeProviders(env, async () => { throw Object.assign(new Error('unknown origin'), { code: 'ENOTFOUND' }); }).providers.save(submission), error => error.state === 'unknown');
+});
+
+test('Supabase DNS retries stop after 24 attempts and never repeat accepted messages', async () => {
+  let timestamp = 1000000000;
+  const store = new Store(':memory:', { now: () => timestamp });
+  const submission = validateSubmission(body(), quiz); store.accept(submission, 'test-ip');
+  const calls = { save: 0, telegram: 0, whatsapp: 0 };
+  const worker = makeWorker(store, {
+    save: async () => { calls.save++; throw new ProviderError('dns_unavailable', 'queued', 300000); },
+    telegram: async () => { calls.telegram++; return accepted(); },
+    whatsapp: async () => { calls.whatsapp++; return accepted(); }
+  });
+  await worker.tick(); await worker.tick();
+  assert.equal(calls.save, 1);
+  for (let i = 0; i < 24; i++) { timestamp += 300000; await worker.tick(); }
+  assert.deepEqual(calls, { save: 24, telegram: 1, whatsapp: 1 });
+  const jobs = store.jobs(submission.payload.submissionId);
+  assert.equal(jobs.find(job => job.kind === 'save').state, 'failed');
+  assert.equal(jobs.find(job => job.kind === 'save').error_code, 'dns_retry_exhausted');
+  assert.ok(jobs.filter(job => job.kind !== 'save').every(job => job.state === 'accepted'));
+  store.close();
+});
