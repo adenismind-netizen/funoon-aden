@@ -12,7 +12,6 @@
   const STORAGE_KEY = 'aden-heart-compass-v2';
   const SOURCE = engine.sanitizeSource(new URLSearchParams(location.search).get('src'));
   const WA_NUMBER = '966558139919';
-  const LEGACY_NAMES = { A: 'النمط القلق', B: 'النمط التفادي', C: 'النمط الفوضوي', D: 'النمط الآمن' };
   const GUIDES = { A: 'qalaq.pdf', B: 'tafadi.pdf', C: 'fawdi.pdf', D: 'amen.pdf' };
   const LABELS = { A: 'طلب الطمأنينة', B: 'حماية المسافة', C: 'القرب والحذر', D: 'خطوة متوازنة' };
   const number = value => new Intl.NumberFormat('ar-SA').format(value);
@@ -21,10 +20,12 @@
   let transitioning = false;
   let submitting = false;
   let toastTimer;
+  const openedAt = Date.now();
+  let pendingSubmission = null;
 
-  // Only the existing public Supabase anon credential is used. Service secrets never belong here.
-  const LEADS_URL = 'https://bjxrzdexgplgjptneomv.supabase.co/rest/v1/quiz_leads';
-  const PUBLIC_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJqeHJ6ZGV4Z3BsZ2pwdG5lb212Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5NTY1MTMsImV4cCI6MjA5MjUzMjUxM30.PXlKTyzEGqCLl3YaXCj6akt0-y46lNWJX9ABPGV-cdk';
+  // The API validates results, stores the lead and queues both messages on the server.
+  // Provider credentials and database credentials never reach the browser.
+  const LEADS_URL = 'https://adenartapp.com/api/quiz-submit';
 
   function track(name, detail = {}) {
     // No network request, contact data, or individual answers. A consent-aware host may subscribe.
@@ -80,6 +81,7 @@
   }
 
   function resetLead() {
+    pendingSubmission = null;
     $('lead-form').reset();
     $('lead-form').hidden = false;
     $('lead-success').hidden = true;
@@ -287,19 +289,31 @@
     }
     const controller = new AbortController();
     const submittedAnswers = JSON.stringify(state.answers);
-    const timeout = setTimeout(() => controller.abort(), 12000);
+    const timeout = setTimeout(() => controller.abort(), 15000);
     submitting = true;
     $('lead-submit').disabled = true;
-    $('form-message').textContent = 'جارٍ حفظ طلبكِ…';
+    $('form-message').textContent = 'جارٍ إرسال طلب المتابعة…';
     try {
-      const product = content.products[result.productKey];
+      const identity = JSON.stringify({ name, phone, answers: state.answers });
+      if (!pendingSubmission || pendingSubmission.identity !== identity) {
+        pendingSubmission = {
+          identity,
+          body: { submissionId: crypto.randomUUID(), name, phone, answers: { ...state.answers }, src: SOURCE, consent: true, website: $('lead-website').value, elapsedMs: Date.now() - openedAt }
+        };
+      }
       const response = await fetch(LEADS_URL, {
         method: 'POST',
         signal: controller.signal,
-        headers: { apikey: PUBLIC_ANON_KEY, Authorization: 'Bearer ' + PUBLIC_ANON_KEY, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
-        body: JSON.stringify({ name, whatsapp: phone, pattern: LEGACY_NAMES[result.winner], pattern_key: result.winner, book: product.title, book_link: engine.productUrl(product, result, SOURCE), scores: result.scores, source: SOURCE })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(pendingSubmission.body)
       });
-      if (!response.ok) throw new Error('Lead storage unavailable.');
+      const receipt = await response.json();
+      if (!response.ok || receipt.ok !== true || receipt.accepted !== true || receipt.submissionId !== pendingSubmission.body.submissionId) {
+        const error = new Error('Lead submission unavailable.');
+        error.cooldown = receipt.error === 'phone_cooldown';
+        error.rateLimited = response.status === 429;
+        throw error;
+      }
       if (JSON.stringify(state.answers) !== submittedAnswers || state.screen !== 'result') return;
       state.leadSaved = true;
       persist();
@@ -310,9 +324,13 @@
       $('lead-name').value = '';
       $('form-message').textContent = '';
       track('lead_saved', { pattern: result.winner });
-    } catch (_) {
+    } catch (error) {
       if (JSON.stringify(state.answers) !== submittedAnswers || state.screen !== 'result') return;
-      $('form-message').replaceChildren(document.createTextNode('تعذّر حفظ الطلب الآن. دليلكِ متاح دون تسجيل، أو '));
+      const message = error.cooldown
+        ? 'سبق استلام طلب لهذا الرقم مؤخرًا. إذا لم تصلكِ الرسالة، '
+        : error.rateLimited ? 'وصلنا عدد كبير من الطلبات الآن. حاولي لاحقًا، أو '
+          : 'تعذّر تأكيد استلام الطلب الآن. يمكنكِ المحاولة مجددًا، أو ';
+      $('form-message').replaceChildren(document.createTextNode(message));
       const link = document.createElement('a'); link.href = whatsappUrl(); link.target = '_blank'; link.rel = 'noopener'; link.textContent = 'اطلبيه مباشرة على واتساب ↗';
       $('form-message').append(link);
     } finally {

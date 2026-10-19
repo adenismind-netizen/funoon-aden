@@ -1,0 +1,30 @@
+[Unit]
+Description=Aden Quiz Secure API (فنون عدن)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/aden-quiz-api
+EnvironmentFile=/opt/aden-quiz-api/.env
+# __NODE_BIN__ يُستبدل بمسار node الفعلي وقت النشر (command -v node)
+ExecStart=__NODE_BIN__ /opt/aden-quiz-api/server.js
+DynamicUser=yes
+StateDirectory=aden-quiz-api
+StateDirectoryMode=0700
+Environment=DATA_DIR=/var/lib/aden-quiz-api
+Environment=QUIZ_SOURCE_DIR=/opt/aden-quiz-api/quiz-source
+Restart=always
+RestartSec=3
+# تشديد أمني
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+UMask=0077
+PrivateTmp=true
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=aden-quiz-api
+
+[Install]
+WantedBy=multi-user.target
